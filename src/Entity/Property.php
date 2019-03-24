@@ -97,7 +97,7 @@ class Property
     private $postal_code;
 
     /**
-     * @Assert\Regex("/^[0-6]{6}$/")
+     *
      * @ORM\Column(type="string", length=6, nullable=true)
      */
     private $class_energy;
@@ -280,16 +280,22 @@ class Property
     }
     
     
-    public function getClassEnergy(): ?string
+    public function getClassEnergy(): ?int
     {
         return $this->class_energy;
     }
 
-    public function setClassEnergy(string $class_energy): self
+    public function setClassEnergy(int $class_energy): self
     {
         $this->class_energy = $class_energy;
 
         return $this;
+    }
+
+    public function getClassEType(): string
+    {
+        //renvoi this =le type
+        return self::ClassE[$this->Class_energy];
     }
 
     public function getSold(): ?bool

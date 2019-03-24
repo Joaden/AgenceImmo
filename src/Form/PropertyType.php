@@ -27,7 +27,7 @@ class PropertyType extends AbstractType
             ->add('city')
             ->add('address')
             ->add('postal_code')
-            ->add('class_energie', ChoiceType::class, [
+            ->add('class_energy', ChoiceType::class, [
                 'choices' => $this->getChoicesClass()
             ])
             ->add('sold')
