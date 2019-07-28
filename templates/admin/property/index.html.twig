@@ -3,9 +3,12 @@
 {% block title 'Gérer les biens' %}
 
 {% block body %}
-   <div class="container mt-4">
+   <div class="container mt-5">
     
     <h1>Gérer les biens</h1>
+    <div class="text-right">
+            <a href="{{ path('admin.property.new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+        </div>
 
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -19,6 +22,9 @@
             </tr>
             <tr>
                 <th>Titre du bien</th>
+                <th>Surface habitable</th>
+                <th>Ville</th>
+                <th>Prix du bien</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,6 +32,9 @@
         {% for property in properties %}
         <tr>
             <td>{{ property.title }}</td>        
+            <td>{{ property.surface }} m²</td>        
+            <td>{{ property.city }}</td>        
+            <td>{{ property.price }} €</td>        
             <td>    <!-- le liens est une route par id, pour concaténer avec twig j'utilise la tilde-->
                 <a href="{{ path('admin.property.edit', {id: property.id}) }}" class="btn btn-secondary">Editer</a>
                 <form method="post" action="{{ path('admin.property.delete', {id: property.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes vous vraiment sûr?')">

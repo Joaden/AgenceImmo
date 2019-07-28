@@ -4,14 +4,16 @@
 
 {% block body %}
     <div class="jumbotron text-center">
-        <h1>Agence de Limeil-Brevannes</h1>
-        <p>Bienvenue !!! </div>
+        <h1 style="text-shadow: 1px 3px 3px #1C6EA4;">Agence de Limeil-Brevannes</h1>
+        <p>Bienvenue !!! </p>
+    </div>
+<section>
 
     <div class="container">
         <h2>Nos nouveaux biens</h2>
         <div class="row flex">
             {% for property in properties %}
-                <div class="col-3">
+            <div class="col-3">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">
@@ -23,17 +25,19 @@
                             <p class="card-text">{{ property.city }} ({{ property.postalCode }})</p>
                             <div class="text-primary" style="front-weight: bold;font-size:2rem;">{{ property.formattedPrice }} €</div>
                             <!-- sans la function formattedPrice 
-                                <div class="text-primary" style="front-weight: bold;font-size:2rem;">{{ property.Price | number_format(0, '', ' ') }} €</div> -->
+                            <div class="text-primary" style="front-weight: bold;font-size:2rem;">{{ property.Price | number_format(0, '', ' ') }} €</div> -->
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
-    <div class="jumbotron text-center">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
+</section>
+<section>
+<div class="jumbotron text-center">
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
                     <h3>Transaction</h3>
                     <p>Gérez la vente de votre portefeuille de propriétés, terrains, les commerces, bureaux et propriétés de prestige</p>
                     <p><a href="#" class="button">En savoir plus</a></p>
@@ -69,4 +73,21 @@
             </a>
         </div>
     </div>
-{% endblock %}
+</section>
+<section id="skills">
+    <div class="container">
+        <div class="skills-header">
+            <h3>Our Skills</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate obcaecati voluptates repudiandae quis neque nisi aspernatur nulla dolor nemo, officiis est, odio ab eveniet magnam repellat, eos ratione explicabo quisquam?
+            </p>
+        </div>
+        <div class="skills-content">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</section>        
+    {% endblock %}

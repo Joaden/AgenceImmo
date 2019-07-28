@@ -12,23 +12,122 @@
                 list-style-type: none;
 
             }
+            #footer{
+                background: #000;
+                /* background-color: rgb(12, 8, 178); */
+                background-position-x: 0%;
+                background-position-y: 0%;
+                background-repeat: repeat;
+                background-attachment: scroll;
+                background-image: none;
+                background-size: auto;
+                padding: 0 0 30px 0;
+                font-size: 16px;
+                color: #eee;
+                text-align: left;
+            }
+            #footer .footer-top{
+                background: #D408B2;
+                padding: 60px 0 30px 0;
+
+            }
+            #footer .container-copyright{
+                width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-left: auto;
+                margin-right: auto;
+                color: #eee;
+            }
+            #footer .copyright{
+                text-align: center;
+                padding-top: 30px;
+            }
+            #footer .credits{
+                text-align: center;
+                font-size: 13px;
+                color: #ddd;
+
+            }
+            #footer .footer-top .footer-links ul{
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            #footer .footer-top .footer-links ul i{
+                padding-right: 8px;
+                color: #ddd;
+            }
+
+            #footer .footer-top .footer-links ul a{
+                color: #eee;
+            }
+            #footer .footer-top .footer-info h3{
+                font-size: 34px;
+                margin: 0 0 20px 0;
+                padding: 2px 0 2px 10px;
+                line-height: 1;
+                font-weight: 700;
+                letter-spacing: 3px;
+                border-left: 4px solid #000;
+            }
+
+            #footer .footer-top .footer-links{
+                margin-bottom: 30px;
+
+            }
+
+            #footer .footer-top h4{
+                font-size: 14px;
+                font-weight: bold;
+                position: relative;
+                padding-bottom: 12px;
+                text-transform: uppercase;
+                border-bottom: 4px solid #000;
+            }
+
+            #footer .footer-top .footer-newsletter{
+                margin-bottom: 30px;
+            }
+
+            #footer .footer-top .footer-newsletter input[type="email"]{
+                border: 0;
+                padding: 6px 8px;
+                width: 65%;
+            }
+            #footer .footer-top .footer-newsletter input[type="submit"]{
+                background: #D408B2;
+                border: 0;
+                width: 35%;
+                padding: 6px 0;
+                text-align: center;
+                color: #fff;
+                transition: 0.35;
+                cursor: pointer;
+                
+            }
             
         </style>
     </head>
     <body>
-    <!-- body navbar fixed-top-->
+    <!-- body navbar fixed-top   style="background-color: #9933ff;"   -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #9933ff;">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #D408B2;">
         <a class="navbar-brand" href="{{ path('home') }}">Agence</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto" style="text-shadow: 1px 2px 2px #1C6EA4;">
                 <li class="nav-item">
                                 <!--  -->
                     <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}">Acheter</a>
+                </li>
+                <li class="nav-item">
+                                <!--  -->
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="">Vendre</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('louer') }}">Louer</a>
@@ -44,9 +143,8 @@
                         <a class="dropdown-item" href="{{ path('contact') }}">Nous Contacter</a>
                     </div>
                 </li>
-            </ul>
             {% if not app.user %}
-            <ul class="navbar-nav">
+          
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('security_registration') }}">S'inscrire</a>
                 </li>
@@ -54,22 +152,22 @@
                     <a class="nav-link" href="{{path('security_login')}}">Se connecter</a>
                 </li>
             {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Bienvenue {{ app.user.username }}</a>
+                <li class="nav-item" style="text-color:  ;">
+                    <a class="nav-link" href="#" style="background-color: #;" style="text-shadow: 1px 2px 2px #1C6EA4;">Bienvenue {{ app.user.username }}</a>
                 </li>
             {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin.property.index') }}">Gérer mes biens</a>
+                <li class="nav-item" style="text-shadow: 1px 2px 2px #FFBF00;">
+                    <a class="nav-link" href="{{ path('admin.property.index') }}" style="text-shadow: 1px 2px 2px #FFBF00;">Gérer les biens</a>
                 </li>
             {% endif %}
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Mes Emails</a>
+                <li class="nav-item" style="background-color: ;">
+                    <a href="{{path('email')}}" class="nav-link" style="background-color: #;">Mes messages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
+                    <a class="nav-link" href="{{path('security_logout')}}" style="background-color: #;">Se déconnecter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('account')}}">Mon compte</a>
+                    <a class="nav-link" href="{{path('account')}}" style="background-color: #;">Mon compte</a>
                 </li>
             {% endif %}
             </ul>
@@ -88,7 +186,104 @@
 
         {% endblock %}
     
-        {% block footer %}{% endblock %}
+        {% block footer %}
+        
+        
+        <footer id="footer">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 footer-info">
+                            <h3>Site immobilier</h3>
+                            <p>Développé entièrement par Denis Chanet. Pour valider mon titre professionnel, j'ai créé ce site en autonomie. Avec le framework Symfony 4, Php, Twig, JQuery, Ajax...
+                            Actuellement en cour de programmation...
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-6 footer-links">
+                            <h4>Useful Links</h4>
+                            <ul>
+                                <li>
+                                    <i class=""></i>
+                                    <a href="{{ path('home') }}">Home</a>
+                                </li>
+                                <li>
+                                    <i class="ion-ios-arrow-right"></i>
+                                    <a href="{{ path('about') }}">About us</a>
+                                </li>
+                                <li>
+                                    <i class="ion-ios-arrow-right"></i>
+                                    <a href="{{ path('property.index') }}">Services</a>
+                                </li>
+                                <li>
+                                    <i class="ion-ios-arrow-right"></i>
+                                    <a href="#">Terms of service</a>
+                                </li>
+                                <li>
+                                    <i class="ion-ios-arrow-right"></i>
+                                    <a href="#">Privacy policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-md-6 footer-contact">
+                            <h4>Nous contacter</h4>
+                            <p>
+                                Avenue de Verdun
+                                <br>
+                                Limeil-Brevannes 
+                                <br>
+                                France
+                                <br>
+                                <strong>Phone:</strong>
+                                06.00.00.00.00
+                                <br>
+                                <strong>Email:</strong>
+                                agence@example.com
+                                <br>
+                            </p>
+                            <div class="social-links">
+                                <a class="facebook" href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a class="instagram" href="#">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a class="linkedin" href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 footer-newsletter">
+                            <h4>Our Newsletter</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae repellat sint ad amet expedita, impedit assumenda veritatis modi eveniet alias, pariatur a aut nemo quam magni et illum ipsa accusantium.</p>
+                            <form action="" method="post">
+                                <input type="email" name="email">
+                                <input type="submit" value="Subscribe">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-copyright">
+                    <div class="copyright">&copy; Copyright <strong>Agence de Limeil</strong>
+                        . All Rights Reserved
+                    </div>
+                    <div class="credits">
+                        Designed by 
+                        <a href="#">Denis Chanet</a>
+                    </div>
+                </div>
+            </div>
+            <!--Linkedin-->
+            <button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>
+        </footer>
+        <a class="back-to-top" href="#" style="display: inline;">
+            <i class="chevron-up">
+                
+            </i>
+        </a>
+
+        {% endblock %}
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 
@@ -97,15 +292,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 <script>
     $('select').select2();
-    let $contactAgence = $('#contactAgence')
-    $('#contactAgence').click(e => {
+    let $contactButton = $('#contactButton')
+    $('#contactButton').click(e => {
     e.preventDefault();
     $('#contactForm').slideDown();
-    $contactAgence.slideUp();
+    $contactButton.slideUp();
     })
 </script>
+    <script src="assets/js/app.js"></script>
 
-    <script src="{{ asset('js/app.js') }}"></script>
     
         {% block javascripts %}{% endblock %}
 

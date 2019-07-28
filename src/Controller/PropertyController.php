@@ -149,7 +149,7 @@ class PropertyController extends AbstractController
         // notifi le contact dans la function notify, 
         if ($form->isSubmitted() && $form->isValid()) {
             $notification->notify($contact);
-            $this->addFlash('succes', 'Votre email a bien été envoyé');
+            $this->addFlash('success', 'Votre email a bien été envoyé');
             return $this->redirectToRoute('property.show', [
                 'id' => $property->getId(),
                 'slug' => $property->getSlug()

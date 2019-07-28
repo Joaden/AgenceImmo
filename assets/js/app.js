@@ -6,14 +6,16 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
+let $ = require('jquery')
 require('../css/app.css');
+require('select2')
 
 $('select').select2();
-    let $contactAgence = $('#contactAgence')
-    $('#contactAgence').click(e => {
+    let $contactButton = $('#contactButton')
+    $('#contactButton').click(e => {
     e.preventDefault();
     $('#contactForm').slideDown();
-    $contactAgence.slideUp();
+    $contactButton.slideUp();
     })
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');

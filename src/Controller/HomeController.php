@@ -49,18 +49,7 @@ class HomeController extends AbstractController
       //return new Response('coucou');
     }
 
-    /**
-     * @Route("/account", name="account")
-     * 
-     */
-    public function account()
-    {
-        $user = $repository->findAll();
-
-        return $this->render('/account.html.twig', [
-            'users' => $user
-        ]);
-    }
+    
 
     /**
      * @Route("/about", name="about")
@@ -113,5 +102,5 @@ class HomeController extends AbstractController
       //return new Response('register');
     }
    
-
+    
 }

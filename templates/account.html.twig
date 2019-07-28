@@ -3,17 +3,21 @@
 {% block title %}Account{% endblock %}
 
 {% block body %}
-<h1>Vos coordonnées : </h1>
+<div class="container">
+    <h1>Bonjour, <br>{{ users.username }}</h1>
 
-    <article>
-            <h2>{{ user.username }}</h2>
+    <div>Votre Email: {{ users.email }}</div>
+
+    {% for users in users %}
+        <article>
             <div class="content">
-        <div>{{ user.email }}</div>
-        <div>{{ user.roles }}</div>
-            </div>
-    </article>
-
-    <section id="favoris">
-        
-    </section>
+            <div>{{ users.email }}</div>
+            <div>{{ users.roles }}</div>
+                </div>
+        </article>
+    {% endfor %}
+        <section id="favoris">
+            
+        </section>
+</div>
 {% endblock %}
