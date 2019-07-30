@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Editer le user' %}
+
+{% block body %}
+<div class="container mt-2">
+    <div>
+        <h2>photo</h2>
+    </div>
+    <div class="container mt-4">
+        <div class="">
+            <h1>Modifier l'utilisateur</h1>
+            {{ include('admin_user/_form.html.twig', {button: 'Editer'}) }}
+
+
+            <div class="text-right">
+                <a href="{{ path('admin_user.index') }}" class="btn btn-danger">Retour</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
