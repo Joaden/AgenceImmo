@@ -2,12 +2,97 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         {% block stylesheets %}{% endblock %}
         <style>
+            * {
+                box-sizing: border-box;
+            }       
+            /* .containerTitle {
+                max-height: 100vh;
+                overflow-y: scroll;
+                position: relative;
+                scroll-snap-type: y mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .headline {
+                align-items: center;
+                background-color: var(--color);
+                display: flex;
+                font-family: 'Lexend Deca', sans-serif;
+                font-weight: 40;
+                font-size: calc(1rem + 15vmin);
+                height: 100vh;
+                justify-content: center;
+                overflow: hidden;
+                perspective: 500px;
+                scroll-snap-align: start;
+                width: 100vw;
+                
+                @for $i from 1 through length($colors) {
+                    &:nth-child(#{$i}) {
+                    --color: #{nth($colors, $i)};
+                    }
+                }
+            }
+
+            .word,
+            .char {
+                animation-delay: var(--del);
+                animation-direction: var(--dir, normal);
+                animation-duration: var(--dur);
+                animation-iteration-count: infinite;
+                animation-name: var(--name);
+                animation-timing-function: var(--tf);
+                display: inline-block;
+                position: relative;
+                transform-origin: 50% 100%;
+                z-index: 1;
+            }
+            /* Animation headline */
+            /*
+            .headline--twirl {
+                .char {
+                    --name: twirl;
+                    --dur: 6000ms;
+                    --del: calc(var(--char-index) * 0.025s);
+                    --tf: linear;
+
+                }
+
+                @keyframes twirl {
+                    2.5% {
+                        transform: rotateY(1turn);
+
+                    }
+                    5% {
+                        transform: rotateY(2turn);
+        
+                    }
+                    10% {
+                        transform: rotateY(3turn);
+
+                    }
+                    20% {
+                        transform: rotateY(4turn);
+
+                    }
+                    40% {
+                        transform: rotateY(5turn);
+
+                    }
+                    70%, 100% {
+                        transform: rotateY(6turn);
+
+                    }
+                }
+            } */
+
             li{
                 list-style-type: none;
 
@@ -107,6 +192,9 @@
                 cursor: pointer;
                 
             }
+            .back-to-top{
+                color: white;
+            }
             
         </style>
     </head>
@@ -139,6 +227,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ path('about') }}">A Propos de nous</a>
                         <a class="dropdown-item" href="{{ path('infos') }}">Informations</a>
+                        <a class="dropdown-item" href="{{ path('privacy') }}">Politique de confidentialité</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ path('contact') }}">Nous Contacter</a>
                     </div>
@@ -258,7 +347,7 @@
                         <div class="col-lg-3 col-md-6 footer-newsletter">
                             <h4>Our Newsletter</h4>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae repellat sint ad amet expedita, impedit assumenda veritatis modi eveniet alias, pariatur a aut nemo quam magni et illum ipsa accusantium.</p>
-                            <form action="" method="post">
+                            <form action="" method="">
                                 <input type="email" name="email">
                                 <input type="submit" value="Subscribe">
                             </form>
@@ -267,22 +356,23 @@
                 </div>
                 <div class="container-copyright">
                     <div class="copyright">&copy; Copyright <strong>Agence de Limeil</strong>
-                        . All Rights Reserved
+                        
                     </div>
                     <div class="credits">
                         Designed by 
                         <a href="#">Denis Chanet</a>
                     </div>
                 </div>
-            </div>
+                <a class="back-to-top" href="#" style="display: inline;">
+            <img id="back-to-top" src="" alt="back-to-top"></a>
             <!--Linkedin-->
             <button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>
+            
+            </div>
+            <a href=""></a>
+            
         </footer>
-        <a class="back-to-top" href="#" style="display: inline;">
-            <i class="chevron-up">
-                
-            </i>
-        </a>
+        
 
         {% endblock %}
 
@@ -301,6 +391,7 @@
     $('#contactForm').slideDown();
     $contactButton.slideUp();
     })
+    
 </script>
     <script src="assets/js/app.js"></script>
 

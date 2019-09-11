@@ -93,6 +93,16 @@ class HomeController extends AbstractController
     }
 
     /**
+     * @Route("/privacy", name="privacy")
+     * @return Response
+     */
+    public function privacy(): Response
+    {
+        return $this->render('pages/privacy.html.twig');
+      //return new Response('privacy');
+    }
+
+    /**
      * @Route("/register", name="register")
      * @return Response
      */
