@@ -45,10 +45,18 @@ Encore
     .configureBabel(() => {}, {
         useBuiltIns: 'usage',
         corejs: 3
+        
     })
+    // .configureBabel(function(babelConfig) {
+    //     // add additional presets
+    //     babelConfig.presets.push('es2017');
+
+    //     // no plugins are added by default, but you can add some
+    //     // babelConfig.plugins.push('styled-jsx/babel');
+    // })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -58,11 +66,15 @@ Encore
     //.enableIntegrityHashes()
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
 ;
-
 module.exports = Encore.getWebpackConfig();
+// var config = Encore.getWebpackConfig();
+
+// config.externals.jquery = 'jQuery'
+
+// module.exports = config

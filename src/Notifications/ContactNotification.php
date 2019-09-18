@@ -33,7 +33,7 @@ class ContactNotification {
         // Email de l'utilisateur
         ->setReplyTo($contact->getEmail())
         // injection du html
-        ->setBody($this->renderer->render('emails/contact.html.twig', [
+        ->setBody($this->renderer->render('emails/contact2.html.twig', [
             'contact' => $contact
         ]), 'text/html');
         $this->mailer->send($message);
