@@ -5,6 +5,11 @@
 {% block body %}
 <div class="container">
     <h1>Bonjour, <br>{{ users.username }}</h1>
+    <?php
+        echo "Bonjour, je suis un script PHP !";
+    ?>
+
+    <div>Hello de page 29/10/19 account.html.twig</div>
 
     <div>Votre Email: {{ users.email }}</div>
 
@@ -13,6 +18,14 @@
             <div class="content">
             <div>{{ users.email }}</div>
             <div>{{ users.roles }}</div>
+        {% for address in address %}
+
+            <div>{{ address.address }}</div>
+            <div>{{ address.postal_code }}</div>
+            <div>{{ address.city }}</div>
+
+        {% endfor %}
+
                 </div>
         </article>
     {% endfor %}

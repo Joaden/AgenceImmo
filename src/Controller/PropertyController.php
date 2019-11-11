@@ -67,10 +67,30 @@ class PropertyController extends AbstractController
             $request->query->getInt('page',1),
             12
         );
+        
+        // 1. Obtain doctrine manager
+        //$em = $this->getDoctrine()->getManager();
+        
+        // 2. Setup repository of some entity
+       // $repoProperty = $em->getRepository(Property::class);
+        
+        // 3. Query how many rows are there in the Articles table
+       // $totalProperty = $repoProperty->createQueryBuilder('a')
+            // Filter by some parameter if you want
+            // ->where('a.published = 1')
+        //    ->select('count(a.id)')
+        //    ->getQuery()
+        //    ->getSingleScalarResult();
+        
+        // 4. Return a number as response
+        // e.g 972
+      //  return new Response($totalProperty);
+    
 
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties',
             'properties' => $properties,
+           // 'totalProperty' => $totalProperty,
             'form' => $form->createView()
         ]);
         

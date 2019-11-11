@@ -111,6 +111,8 @@ class HomeController extends AbstractController
         return $this->render('pages/register.html.twig');
       //return new Response('register');
     }
+
+    
    
     
 }

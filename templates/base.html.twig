@@ -10,205 +10,18 @@
         {% block stylesheets %}
         
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        
         {{ encore_entry_link_tags('app') }}
         
-
         {% endblock %}
 
         <style>
-            * {
-                box-sizing: border-box;
-            }       
-            /* .containerTitle {
-                max-height: 100vh;
-                overflow-y: scroll;
-                position: relative;
-                scroll-snap-type: y mandatory;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .headline {
-                align-items: center;
-                background-color: var(--color);
-                display: flex;
-                font-family: 'Lexend Deca', sans-serif;
-                font-weight: 40;
-                font-size: calc(1rem + 15vmin);
-                height: 100vh;
-                justify-content: center;
-                overflow: hidden;
-                perspective: 500px;
-                scroll-snap-align: start;
-                width: 100vw;
-                
-                @for $i from 1 through length($colors) {
-                    &:nth-child(#{$i}) {
-                    --color: #{nth($colors, $i)};
-                    }
-                }
-            }
-
-            .word,
-            .char {
-                animation-delay: var(--del);
-                animation-direction: var(--dir, normal);
-                animation-duration: var(--dur);
-                animation-iteration-count: infinite;
-                animation-name: var(--name);
-                animation-timing-function: var(--tf);
-                display: inline-block;
-                position: relative;
-                transform-origin: 50% 100%;
-                z-index: 1;
-            }
-            /* Animation headline */
-            /*
-            .headline--twirl {
-                .char {
-                    --name: twirl;
-                    --dur: 6000ms;
-                    --del: calc(var(--char-index) * 0.025s);
-                    --tf: linear;
-
-                }
-
-                @keyframes twirl {
-                    2.5% {
-                        transform: rotateY(1turn);
-
-                    }
-                    5% {
-                        transform: rotateY(2turn);
-        
-                    }
-                    10% {
-                        transform: rotateY(3turn);
-
-                    }
-                    20% {
-                        transform: rotateY(4turn);
-
-                    }
-                    40% {
-                        transform: rotateY(5turn);
-
-                    }
-                    70%, 100% {
-                        transform: rotateY(6turn);
-
-                    }
-                }
-            } */
-
-            li{
-                list-style-type: none;
-
-            }
-            #footer{
-                background: #000;
-                /* background-color: rgb(12, 8, 178); */
-                background-position-x: 0%;
-                background-position-y: 0%;
-                background-repeat: repeat;
-                background-attachment: scroll;
-                background-image: none;
-                background-size: auto;
-                padding: 0 0 30px 0;
-                font-size: 16px;
-                color: #eee;
-                text-align: left;
-            }
-            #footer .footer-top{
-                background: #D408B2;
-                padding: 60px 0 30px 0;
-
-            }
-            #footer .container-copyright{
-                width: 100%;
-                padding-right: 15px;
-                padding-left: 15px;
-                margin-left: auto;
-                margin-right: auto;
-                color: #eee;
-            }
-            #footer .copyright{
-                text-align: center;
-                padding-top: 30px;
-            }
-            #footer .credits{
-                text-align: center;
-                font-size: 13px;
-                color: #ddd;
-
-            }
-            #footer .footer-top .footer-links ul{
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-            #footer .footer-top .footer-links ul i{
-                padding-right: 8px;
-                color: #ddd;
-            }
-
-            #footer .footer-top .footer-links ul a{
-                color: #eee;
-            }
-            #footer .footer-top .footer-info h3{
-                font-size: 34px;
-                margin: 0 0 20px 0;
-                padding: 2px 0 2px 10px;
-                line-height: 1;
-                font-weight: 700;
-                letter-spacing: 3px;
-                border-left: 4px solid #000;
-            }
-
-            #footer .footer-top .footer-links{
-                margin-bottom: 30px;
-
-            }
-
-            #footer .footer-top h4{
-                font-size: 14px;
-                font-weight: bold;
-                position: relative;
-                padding-bottom: 12px;
-                text-transform: uppercase;
-                border-bottom: 4px solid #000;
-            }
-
-            #footer .footer-top .footer-newsletter{
-                margin-bottom: 30px;
-            }
-
-            #footer .footer-top .footer-newsletter input[type="email"]{
-                border: 0;
-                padding: 6px 8px;
-                width: 65%;
-            }
-            #footer .footer-top .footer-newsletter input[type="submit"]{
-                background: #D408B2;
-                border: 0;
-                width: 35%;
-                padding: 6px 0;
-                text-align: center;
-                color: #fff;
-                transition: 0.35;
-                cursor: pointer;
-                
-            }
-            .back-to-top{
-                color: white;
-            }
-            
         </style>
     </head>
     <body>
     <!-- body navbar fixed-top   style="background-color: #9933ff;"   -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #D408B2;">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="{{ path('home') }}">Agence</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -217,9 +30,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" style="text-shadow: 1px 2px 2px #1C6EA4;">
                 <li class="nav-item">
-                                <!--  -->
+                                <!-- route page Acheter un bien avec la seach -->
                     <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}">Acheter</a>
                 </li>
+                
                 <li class="nav-item">
                                 <!--  -->
                     <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="">Vendre</a>
@@ -248,7 +62,7 @@
                     <a class="nav-link" href="{{path('security_login')}}">Se connecter</a>
                 </li>
             {% else %}
-                <li class="nav-item" style="text-color:  ;">
+                <li class="nav-item">
                     <a class="nav-link" href="#" style="background-color: #;" style="text-shadow: 1px 2px 2px #1C6EA4;">Bienvenue {{ app.user.username }}</a>
                 </li>
             {% if is_granted('ROLE_ADMIN') %}
@@ -294,7 +108,7 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-6 footer-info">
                             <h3>Site immobilier</h3>
-                            <p>Développé entièrement par Denis Chanet. Pour valider mon titre professionnel, j'ai créé ce site en autonomie. Avec le framework Symfony 4, Php, Twig, JQuery, Ajax...
+                            <p>Développé entièrement par Denis Chanet. J'ai créé ce site en autonomie. Avec le framework Symfony 4, Php, Twig, JQuery, Ajax...
                             Actuellement en cour de programmation...
                             </p>
                         </div>
@@ -392,15 +206,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 
 
-    <!-- <script>
-        $('select').select2();
-    let $contactButton = $('#contactButton')
-    $('#contactButton').click(e => {
-    e.preventDefault();
-    $('#contactForm').slideDown();
-    $contactButton.slideUp();
-    })
-    </script> -->
+    
 
     
         {% block javascripts %}

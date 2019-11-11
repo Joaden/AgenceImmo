@@ -27,7 +27,8 @@
     </div>
         <div class="container mt-4">
             <h1>Voir tous nos biens</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur explicabo iste iure nihil nobis ratione repellat repudiandae ullam unde voluptates? Alias consequatur deserunt nostrum pariatur saepe! At expedita quod vero.</p>
+            <p>Vous pouvez effectuer une recherche d'un bien selon vos critères.<br>
+            Cliquez sur le titre de l'annonce pour voir les détails.</p>
             
             <div class="row">
                 {% for property in properties %}
@@ -43,5 +44,7 @@
 
             </div>
         </div>
-
+    <div class="text-right">
+        <a href="{{ path('home') }}" class="btn btn-danger">Retour</a>
+    </div>
 {% endblock %}

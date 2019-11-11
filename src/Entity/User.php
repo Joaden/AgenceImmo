@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -49,6 +52,15 @@ class User implements UserInterface
      */
     private $roles;
 
+   
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\InfosUser", mappedBy="User", cascade={"persist", "remove"})
+     */
+    private $infosUser;
+
+
+
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
@@ -95,6 +107,9 @@ class User implements UserInterface
         return $this;
     }
 
+
+
+
     public function eraseCredentials() {}
 
     public function getSalt() {}
@@ -102,5 +117,23 @@ class User implements UserInterface
     public function getRoles() 
     {
         return $this->roles;
+    }
+
+    public function getInfosUser(): ?InfosUser
+    {
+        return $this->infosUser;
+    }
+
+    public function setInfosUser(?InfosUser $infosUser): self
+    {
+        $this->infosUser = $infosUser;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newUser = $infosUser === null ? null : $this;
+        if ($newUser !== $infosUser->getUser()) {
+            $infosUser->setUser($newUser);
+        }
+
+        return $this;
     }
 }

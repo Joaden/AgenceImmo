@@ -9,6 +9,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Psr\Log\LoggerInterface;
+
+use App\Entity\User;
+use App\Entity\InfosUser;
+use App\Form\RegistrationType;
+use Twig\Environment;
+
+
 
 
 class UserAccountController extends AbstractController
@@ -24,10 +32,11 @@ class UserAccountController extends AbstractController
     private $em;
 
     // Je récupère les données du user connecté
-    public function __construct(UserRepository $repository, ObjectManager $em)
+    public function __construct(LoggerInterface $logger, UserRepository $repository, ObjectManager $em)
     {
         $this->repository = $repository;
         $this->em = $em;
+        $this->logger = $logger;
     }
 
 
@@ -47,16 +56,29 @@ class UserAccountController extends AbstractController
 
 
     /**
-     * @Route("/account", name="account")
+     * @Route("/account", name="account", requirements={"slug": "[a-z0-9\-]*"})
+     * @param UserRepository $UserRepository
      * @return Response
      */
-    public function account()
+    public function account(UserRepository $repository)
     {
         $users = $this->repository->find(13);
         dump($users);
         return $this->render('/account.html.twig', [
             'users' => $users
         ]);
+        // partie test 28/10/19
+        // if ($user->getSlug() !==$slug) {
+        //     // redirection vers une route
+        //     // Appel du slug
+        //     return $this->redirectToRoute('account.html.twig', [
+        //         'id' => $user->getId(),
+        //         'slug' => $user->getSlug()
+        //     ], 301);
+        //     // retourne la page show avec le menu properties
+        // return $this->render('/account.html.twig', [
+        //     'users' => $users
+        // ]);
     }
 
 

@@ -5,20 +5,31 @@
 {% block body %}
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-6">
-            <h1>Connexion !</h1>
-            <div class="row-flex col-4">
-                <form action="{{ path('security_login') }}" method="POST">
-                    <div class="form-group">
-                        <input placeholder="Adresse email ..." required name="_username" type="text" class="form_control">
-                    </div>
-                    <div class="form-group">
-                        <input placeholder="Mot de passe ..." required name="_password" type="password" class="form_control">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success">Connexion !</button>
-                    </div>
-                </form>
+        <div class="section" style="border: 3px solid #1C6EA4;margin:50px;padding:50px;">
+            <div class="col-12">
+                <h1>Connexion !</h1>
+                <h2>Identifiez-vous</h2>
+                <div class="row-flex col-6">
+                    <form action="{{ path('security_login') }}" method="POST">
+                        <div class="form-group">
+                            <input placeholder="Adresse email ..." required name="_username" type="text" class="form_control">
+                        </div>
+                        <div class="form-group">
+                            <input placeholder="Mot de passe ..." required name="_password" type="password" class="form_control">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Connexion !</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row-flex col-12">
+                <div class="row-flex col-12">
+                    <h5>Nouveau dans cette agence ?</h5>
+                </div>
+                <div class="btn btn-info">
+                    Créer un compte
+                </div>
             </div>
         </div>
     </div>

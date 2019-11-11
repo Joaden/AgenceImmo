@@ -23,6 +23,11 @@ $('select').select2();
     $('#contactForm').slideDown();
     $contactButton.slideUp();
     })
+    $("div .card ").click(function(){
+        $(this).animate({
+            transform:'scale(2.0)'
+        })
+    });
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 //const $ = require('jquery');
 

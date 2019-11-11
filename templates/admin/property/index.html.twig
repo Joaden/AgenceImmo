@@ -18,7 +18,12 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nombre de biens : </th>              
+                <th>Nombre de biens : </th> 
+                <td> 
+               
+                        <!-- // affiche le total de biens   -->
+                        
+                </td>   
             </tr>
             <tr>
                 <th>Titre du bien</th>
@@ -26,6 +31,7 @@
                 <th>Ville</th>
                 <th>Prix du bien</th>
                 <th>Actions</th>
+                <th>Photos</th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +49,9 @@
                     <input type="hidden" name="_token" value={{csrf_token('delete' ~ property.id) }}>
                  <button class="btn btn-danger">Supprimer</button>
                 </form>
-            </td>        
+            </td>
+            <td>{% include 'property/_propertyImageFile.html.twig' %}</td>        
+            
         </tr>
         {% endfor %}
         </tbody>
@@ -51,6 +59,9 @@
 
         <div class="text-right">
             <a href="{{ path('admin.property.new') }}" class="btn btn-primary">Créer un nouveau bien</a>
+        </div>
+        <div class="text-right">
+            <a href="{{ path('home') }}" class="btn btn-danger">Retour</a>
         </div>
 </div>
     
