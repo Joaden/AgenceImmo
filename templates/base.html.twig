@@ -17,8 +17,103 @@
 
         <style>
         </style>
+        <?php
+    // Récupère l'heure du serveur
+
+       $localtime = localtime();
+
+       $seconde =  $localtime[0];
+       $minute =  $localtime[1];
+       $heure =  $localtime[2];
+
+    ?>
+  <script src="js/clock.js"></script>
+
+    <script type="text/javascript">
+
+          bcle=0;
+
+function clock()
+{
+  if (bcle == 0)
+  {
+    heure = <?php echo $heure ?>;
+    min = <?php echo $minute ?>;
+    sec = <?php echo $seconde ?>;
+  }
+  else
+  {
+    sec ++;
+    if (sec == 60)
+    {
+      sec=0;
+      min++;
+      if (min == 60)
+      {
+        min=0;
+        heure++;
+      };
+    };
+  };
+  txt="";
+  if(heure < 10)
+  {
+    txt += "0";
+  }
+  txt += heure+ ":";
+  if(min < 10)
+  {
+    txt += "0"
+  }
+  txt += min + ":";
+  if(sec < 10)
+  {
+    txt += "0"
+  }
+  txt += sec ;
+  timer = setTimeout("clock()",1000);
+  bcle ++;
+  
+  document.clock.date.value = txt ;
+}
+</script>
+
+
+<style type="text/css">
+
+#clock{
+    display:inline;
+    margin-top: ;
+}
+.style {
+  border-width: 0;
+  background-color: transparent;
+  color: white;}
+</style>
+
+<script type="text/javascript">
+function startTime()<!-- on definit la fonction -->
+{
+var aujourdhui=new Date() <!-- on nomme la variable du jour -->
+var h=aujourdhui.getHours() <!-- on recupere lheure -->
+var m=aujourdhui.getMinutes()<!-- on recupere les minutes -->
+var s=aujourdhui.getSeconds() <!--on recupere les secondes -->
+
+m=checkTime(m)
+s=checkTime(s)
+document.getElementById('txt').innerHTML=h+":"+m+":"+s
+t=setTimeout('heure()',500)
+}
+
+function checkTime(i)
+{
+if (i<10)
+  {i="0" + i}
+  return i
+}
+</script>
     </head>
-    <body>
+    <body onload="clock()" onload="startTime()">
     <!-- body navbar fixed-top   style="background-color: #9933ff;"   -->
 
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -36,7 +131,7 @@
                 
                 <li class="nav-item">
                                 <!--  -->
-                    <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="">Vendre</a>
+                    <a class="nav-link" href="#">Vendre</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('louer') }}">Louer</a>
@@ -82,8 +177,22 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('account')}}" style="background-color: #;">Mon compte</a>
                 </li>
+                <li>  <a href=""> </a> </li>
             {% endif %}
+            
+                <!--  Charge la fonction clock dans le corps de la page  -->
+                <div class="clock">
+                <!--  Affiche l'heure  -->
+                <?php echo date('d/m/Y'); ?>
+                <form id="clock" name="clock" onSubmit="0">
+                <input type="text" name="date" size="5" readonly="true" class="style">
+                </form>
+                </div>
+                <!--  END de la fonction clock dans le corps de la page  -->
+                <li >  <a href="">  {{ "now"|date("m/d/Y", "Europe/Paris") }} </a> </li>
             </ul>
+
+            <div id="txt"></div>
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

@@ -146,7 +146,7 @@ class PropertyController extends AbstractController
      */
     public function show(Property $property, string $slug, Request $request, ContactNotification $notification): Response
     {
-        //dans l'annotation : requirements permet de définir des parametres.
+        //dans l'annotation : requirements permet de définir des parametres, un regex.
         // instance des notif
         // et on recupere la propriete
         // $property = $this->repository->find($id);

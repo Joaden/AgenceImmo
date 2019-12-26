@@ -26,7 +26,15 @@
         </div>
     </div>
         <div class="container mt-4">
-            <h1>Voir tous nos biens</h1>
+            <h1>Nombre de Biens trouvés : 
+                {% set counter = 0 %}
+                {% set counterNbr = 0 %}
+                {% for property in properties %}
+                        {% set counterNbr = counterNbr + 1 %}   
+                {% endfor %}
+                
+                {{ counterNbr }} 
+            </h1>
             <p>Vous pouvez effectuer une recherche d'un bien selon vos critères.<br>
             Cliquez sur le titre de l'annonce pour voir les détails.</p>
             

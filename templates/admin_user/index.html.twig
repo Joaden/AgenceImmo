@@ -9,7 +9,6 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello ! ✅</h1>
 
     <h1>Gestion des Utilisaeurs</h1>
     
@@ -30,7 +29,14 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nombre d'utilisateur : </th>              
+                <th>Nombre d'utilisateur : 
+                {% set counter = 0 %}
+                {% set counterNbr = 0 %}
+                {% for user in users %}
+                        {% set counterNbr = counterNbr + 1 %}   
+                {% endfor %}
+
+                {{ counterNbr }}  </th>              
             </tr>
             <tr>
                 <th>N° d'utilisateur</th>
@@ -60,19 +66,18 @@
                 </form>
             </td>
         </tr>
+   
+        {% else %}
+            Aucun utilisateur trouvé!
+            No users have been found.
+            
+
     {% endfor %}
         </tbody>
     </table>
 
         <section id="favoris">
-        {% for user in users %}
-            */* {{ user.username }}
-            email:  {{ user.email }}
-            id : {{ user.id }}
-        {% else %}
-            No users have been found.
-        {% endfor %}
-            
+     
         </section>
 </div>
 

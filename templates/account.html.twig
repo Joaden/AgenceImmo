@@ -9,7 +9,8 @@
         echo "Bonjour, je suis un script PHP !";
     ?>
 
-    <div>Hello de page 29/10/19 account.html.twig</div>
+    <div>Espace compte</div>
+    <div>Modifier son profil: <button class="btn btn-primary">modifier</button> </div>
 
     <div>Votre Email: {{ users.email }}</div>
 
@@ -37,5 +38,21 @@
         {% endfor %}
             
         </section>
+</div>
+<div class="container mt-2">
+    <div>
+        <h2>photo</h2>
+    </div>
+    <div class="container mt-4">
+        <div class="">
+            <h1>Editer mon profil</h1>
+            {{ include('users/_form.html.twig', {button: 'Editer'}) }}
+
+
+            <div class="text-right">
+                <a href="{{ path('admin.property.index') }}" class="btn btn-danger">Retour</a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
