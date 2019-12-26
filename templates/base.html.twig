@@ -63,7 +63,7 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="background-color: #;" style="text-shadow: 1px 2px 2px #1C6EA4;">Bienvenue {{ app.user.username }}</a>
+                    <a class="nav-link" href="#" style="text-shadow: 1px 2px 2px #1C6EA4;">Bienvenue {{ app.user.username }}</a>
                 </li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item" style="text-shadow: 1px 2px 2px #FFBF00;">
@@ -73,14 +73,14 @@
                     <a class="nav-link" href="{{ path('admin_user.index') }}" style="text-shadow: 1px 2px 2px #FFBF00;">Gérer les utilisateurs</a>
                 </li>
             {% endif %}
-                <li class="nav-item" style="background-color: ;">
-                    <a href="{{path('email')}}" class="nav-link" style="background-color: #;">Mes messages</a>
+                <li class="nav-item">
+                    <a href="{{path('email')}}" class="nav-link">Mes messages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('security_logout')}}" style="background-color: #;">Se déconnecter</a>
+                    <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('account')}}" style="background-color: #;">Mon compte</a>
+                    <a class="nav-link" href="{{path('account')}}">Mon compte</a>
                 </li>
             {% endif %}
             </ul>
