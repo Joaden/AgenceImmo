@@ -18,11 +18,19 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nombre de biens : </th> 
+
+
+            <th>Nombre de biens :</php> </th>
                 <td> 
-               
                         <!-- // affiche le total de biens   -->
-                        
+                        {% set counter = 0 %}
+                {% set counterNbr = 0 %}
+                {% for property in properties %}
+                        {% set counterNbr = counterNbr + 1 %}   
+                {% endfor %}
+
+                {{ counterNbr }} 
+                    
                 </td>   
             </tr>
             <tr>

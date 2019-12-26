@@ -37,6 +37,12 @@ services:
     App\Listener\ImageCacheSubscriber:
         tags:
         - { name: doctrine.event_subscriber }
+    
+    # App \ ConfigurationBundle \ Twig \ Extension \ ProductStatsExtension
+    # App\BackOffice\ConfigurationBundle\Twig\Extension\ProductStatsExtension:
+    #     arguments:
+    #         $twigExtension: '@twigExtension'
+   
 
 
 

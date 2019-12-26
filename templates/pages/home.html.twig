@@ -20,7 +20,7 @@
 <section>
 
     <div class="container">
-        <h2>Nos nouveaux biens</h2><p>Bienvenue !!! Nous sommes le <?php echo date('d/m/Y h:i:s'); ?> .</p>
+        <h2>Nos nouveaux biens</h2><p>Bienvenue !!! Nous sommes le <?php echo date('d/m/Y h:i:s'); ?>{{ "now"|date("m/d/Y") }}.</p>
             <?php echo "Bonjour, Comment puis-je vous aider? "; ?>
         <div class="row flex">
             {% for property in properties %}
