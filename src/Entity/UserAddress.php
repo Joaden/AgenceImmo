@@ -2,11 +2,18 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM; 
-use JMS\Serializer\Annotation as Serializer;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+//  * @Serializer\ExclusionPolicy("ALL")
+ // use JMS\Serializer\Annotation as Serializer;
+
+
 /**
  * UserAddress
- * @Serializer\ExclusionPolicy("ALL")
  * @ORM\Table(name="users_address")
  * @ORM\Entity(repositoryClass="App\Repository\UserAddressRepository")
  */
@@ -23,48 +30,42 @@ class UserAddress
 
     /**
      * @var string
-     * @Serializer\Expose
      * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
      * @var string
-     * @Serializer\Expose
      * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
      * @var string
-     * @Serializer\Expose
      * @ORM\Column(name="street", type="string", length=255, nullable=true)
      */
     private $street;
 
     /**
      * @var string
-     * @Serializer\Expose
      * @ORM\Column(name="cp", type="string", length=255, nullable=true)
      */
     private $cp;
 
     /**
      * @var string
-     * @Serializer\Expose
      * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Entity\Country")
-     * @Serializer\Expose
+     * @ORM\ManyToOne(targetEntity="App\Entity\Country")
      * @ORM\JoinColumn(nullable=true)
      */
     private $country;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Entity\Regions")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Regions")
      * @ORM\JoinColumn(nullable=true)
      */
     private $region;
@@ -77,7 +78,7 @@ class UserAddress
     private $departement;
 
     /**
-     * @ORM\OneToOne(targetEntity="Entity\User", mappedBy="userAddress", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="userAddress", cascade={"persist"})
      */
     private $user;
 

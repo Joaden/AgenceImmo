@@ -9,9 +9,9 @@ namespace App\DataFixtures;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use App\Entity\Countri;
+use App\Entity\Country;
 
-class LoadCountri extends AbstractFixture implements OrderedFixtureInterface
+class LoadCountry extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * {@inheritDoc}
@@ -19,15 +19,15 @@ class LoadCountri extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
 
-        $countriFr = new Countri();
-        $countriFr->setName('France');
-        $countriFr->setCode('FR');
-        $countriFr->setId(12);
-        $manager->persist($countriFr);
+        $countryFr = new Country();
+        $countryFr->setName('France');
+        $countryFr->setCode('FR');
+        $countryFr->setId(12);
+        $manager->persist($countryFr);
 
         $manager->flush();
 
-        $this->addReference('countri', $countriFr);
+        $this->addReference('country', $countryFr);
     }
 
     /**

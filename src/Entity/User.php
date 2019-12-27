@@ -53,22 +53,27 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @Serializer\Expose
      * @ORM\OneToOne(targetEntity="App\Entity\UserAddress", inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $userAddress;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\InfosUser", mappedBy="User", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\UserInfos", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $infosUser;
+    private $userInfos;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comments", mappedBy="userId")
+     */
+    private $comments;
 
 
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,24 +129,6 @@ class User implements UserInterface
         return $this->roles;
     }
 
-    public function getInfosUser(): ?InfosUser
-    {
-        return $this->infosUser;
-    }
-
-    public function setInfosUser(?InfosUser $infosUser): self
-    {
-        $this->infosUser = $infosUser;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newUser = $infosUser === null ? null : $this;
-        if ($newUser !== $infosUser->getUser()) {
-            $infosUser->setUser($newUser);
-        }
-
-        return $this;
-    }
-
     
     /**
      * Set userAddress.
@@ -165,5 +152,59 @@ class User implements UserInterface
     public function getUserAddress()
     {
         return $this->userAddress;
+    }
+
+        /**
+     * Set userInfos
+     *
+     * @param \App\Entity\UserInfos $userInfos
+     * @return User
+     */
+    public function setUserInfos(\App\Entity\UserInfos $userInfos)
+    {
+        $this->userInfos = $userInfos;
+
+        return $this;
+    }
+
+    /**
+     * Get userInfos
+     *
+     * @return \App\Entity\UserInfos
+     */
+    public function getUserInfos()
+    {
+        return $this->userInfos;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUserId() === $this) {
+                $comment->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 }

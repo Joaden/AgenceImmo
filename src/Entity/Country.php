@@ -3,19 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Countri
- * @Serializer
- * @ORM\Table(name="countri")
- * @ORM\Entity(repositoryClass="App\Repository\CountriRepository")
+ * Country
+ * @ORM\Table(name="country")
+ * @ORM\Entity(repositoryClass="App\Repository\CountryRepository")
  */
-class Countri
+class Country
 {
     /**
      * @var integer
-     * @Serializer\Expose
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -85,7 +82,7 @@ class Countri
      * Set name
      *
      * @param string $name
-     * @return Countri
+     * @return Country
      */
     public function setName($name)
     {
@@ -107,7 +104,7 @@ class Countri
      * Set code
      *
      * @param string $code
-     * @return Countri
+     * @return Country
      */
     public function setCode($code)
     {
@@ -129,7 +126,7 @@ class Countri
      * Set nameCode
      *
      * @param string $nameCode
-     * @return Countri
+     * @return Country
      */
     public function setNameCode($nameCode)
     {
@@ -151,7 +148,7 @@ class Countri
      * Set symbol
      *
      * @param string $symbol
-     * @return Countri
+     * @return Country
      */
     public function setSymbol($symbol)
     {
