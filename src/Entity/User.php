@@ -52,7 +52,12 @@ class User implements UserInterface
      */
     private $roles;
 
-   
+    /**
+     * @Serializer\Expose
+     * @ORM\OneToOne(targetEntity="App\Entity\UserAddress", inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $userAddress;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\InfosUser", mappedBy="User", cascade={"persist", "remove"})
@@ -135,5 +140,30 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+
+    
+    /**
+     * Set userAddress.
+     *
+     * @param App\Entity\UserAddress $userAddress
+     *
+     * @return Users
+     */
+    public function setUserAddress( $userAddress)
+    {
+        $this->userAddress = $userAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get userAddress.
+     *
+     * @return App\Entity\UserAddress
+     */
+    public function getUserAddress()
+    {
+        return $this->userAddress;
     }
 }
