@@ -27,9 +27,11 @@ class Comments
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comment")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $userId;
+    private $user;
+
 
     public function getId(): ?int
     {
@@ -60,15 +62,16 @@ class Comments
         return $this;
     }
 
-    public function getUserId(): ?user
+    public function getUser(): ?user
     {
-        return $this->userId;
+        return $this->user;
     }
 
-    public function setUserId(?user $userId): self
+    public function setUser(?user $user): self
     {
-        $this->userId = $userId;
+        $this->user = $user;
 
         return $this;
     }
+
 }

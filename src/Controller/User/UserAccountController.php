@@ -54,6 +54,38 @@ class UserAccountController extends AbstractController
         ]);
     }
 
+    // /**
+    //  * @Route("/detail", name="user_detail")
+    //  * @Method("GET")
+    //  * @return Response
+    //  */
+    // public function userDetail(): Response
+    // {
+    //     //Affiche les details des Users
+    //     $emails = $this->repository->findById();
+    //     dump($emails);
+    //     return $this->render('users/detail.html.twig', [
+    //         'emails' => $emails
+    //     ]);
+    // }
+    /**
+     * @Route("user/{mail}", name="user_detail", options={"expose"=true})
+     * @Method("GET")
+     * @Template("users/user_detail.html.twig")
+     */
+    // public function userDetail($mail)
+    // {
+    //     $user = $this->repository->findById($mail);
+    //     $user = $this->get('UsersManager')->getUsersByMail($mail);
+
+    //     if (!$user) {
+    //         //redirect error page
+    //         return $this->render('/Error/error.html.twig', array(
+    //             'title' => $this->get('translator')->trans('Erreur user'), 'message' => $this->get('ErrorMessage.service')->errorUser()));
+    //     }
+    // }
+
+
 
     /**
      * @Route("/account", name="account", requirements={"slug": "[a-z0-9\-]*"})

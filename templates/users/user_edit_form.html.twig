@@ -1,0 +1,266 @@
+
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <div class="tab-pane "  >
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i> {{ 'Informations utilisateur'|trans }}
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
+                    <a href="#portlet-config" data-toggle="modal" class="config">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form class="form-horizontal" role="form">
+                    <div class="form-body">
+                        <h3 class="form-section">Fiche utilisateur</h3>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'ID :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.id }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'IP :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.userInfos.ip }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'CB :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {% for val in entity.userTokens %}
+                                                {% if val.isActive  %}
+                                                    {{ val.cardnum|showCardNum }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Nom :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.userAddress.firstname }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Prénom :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.userAddress.lastname }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Email :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.mail }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Téléphone :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.userInfos.phone }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#<div class="row">#}
+                        {#<div class="col-md-12">#}
+                        {#<div class="form-group">#}
+                        {#<label class="control-label col-md-3">{{ 'Carte bancaire :'|trans }}</label>#}
+                        {#<div class="col-md-9">#}
+                        {#<p class="form-control-static">#}
+                        {#{{ cb }}#}
+                        {#</p>#}
+                        {#</div>#}
+                        {#</div>#}
+                        {#</div>#}
+                        {#</div>#}
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Pays :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {% if entity.userAddress.country.name is defined %} {{ entity.userAddress.country.name }} {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Adresse :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.userAddress.street }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Code Postal :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.userAddress.cp }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">{{ 'Ville :'|trans }}</label>
+                                    <div class="col-md-9">
+                                        <p class="form-control-static">
+                                            {{ entity.userAddress.city }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                    </div>
+                    <div class="form-actions fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-offset-3 col-md-9">
+                                    <a href="#portlet-config" data-toggle="modal" class="btn green"><i class="fa fa-pencil"></i> Edit</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title">Edition informations utilisateur</h4>
+            </div>
+            <form action="{{ path('admin_edit_user_save', {'mail': entity.mail}) }}" role="form" data-toggle="validator" class="form-horizontal bv-form" data-validate="parsley" id="validate-form" method="POST" novalidate="novalidate">
+                <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label class="col-md-12">
+                            <label class="" for="userAddress_firstname">Nom</label></label>
+                        <div class="col-md-12"><input type="text" id="userAddress_firstname" name="firstname" class="form-control color-form" placeholder="Nom" data-bv-notempty="data-bv-notempty" data-bv-notempty-message="Veuillez remplir se champ" value="{{ entity.userAddress.firstname }}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">                <label class="" for="userAddress_lastname">Prénom</label></label>
+                        <div class="col-md-12"><input type="text" id="userAddress_lastname" name="lastname" class="form-control color-form" placeholder="Prenom" data-bv-notempty="data-bv-notempty" data-bv-notempty-message="Veuillez remplir se champ" value="{{ entity.userAddress.lastname }}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">                <label class="" for="mail">Mail</label></label>
+                        <div class="col-md-12"><input type="email" id="mail" name="mail" class="form-control color-form" data-bv-emailaddress-message="Veuillez entrer une adresse valide" value="{{ entity.mail }}" data-bv-field="usersbundle_userparent[mail]"><small class="help-block" data-bv-validator="emailAddress" data-bv-for="usersbundle_userparent[mail]" data-bv-result="NOT_VALIDATED" style="display: none;">Veuillez entrer une adresse valide</small></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">                <label class="" for="userAddress_street">Adresse</label></label>
+                        <div class="col-md-12"><input type="text" id="userAddress_street" name="street" class="form-control color-form" placeholder="Adresse" data-bv-notempty="data-bv-notempty" data-bv-notempty-message="Veuillez remplir se champ" value="{{ entity.userAddress.street }}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">                <label class="" for="userAddress_cp">Code postal</label></label>
+                        <div class="col-md-12"><input type="text" id="userAddress_cp" name="cp" class="form-control color-form" placeholder="CP" pattern="^(F-)?((2[A|B])|[0-9]{2})[0-9]{3}$" data-bv-regexp-message="Veuillez entrer un code postal valide" value="{{ entity.userAddress.cp }}" data-bv-field="usersbundle_userparent[userAddress][cp]"><small class="help-block" data-bv-validator="regexp" data-bv-for="usersbundle_userparent[userAddress][cp]" data-bv-result="NOT_VALIDATED" style="display: none;">Veuillez entrer un code postal valide</small></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">                <label class="" for="userAddress_city">Ville</label></label>
+                        <div class="col-md-12"><input type="text" id="userAddress_city" name="city" class="form-control color-form" placeholder="Ville" data-bv-notempty="data-bv-notempty" data-bv-notempty-message="Veuillez remplir se champ" value="{{ entity.userAddress.city }}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">                <label class="" for="phone">Téléphone</label></label>
+                        <div class="col-md-12"><input type="text" id="phone" name="phone" class="form-control color-form" placeholder="Téléphone" data-bv-notempty="data-bv-notempty" data-bv-notempty-message="Veuillez remplir se champ" value="{{ entity.userInfos.phone }}"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-12">                <label class="" for="userAddress_country">Pays</label></label>
+                        <div class="col-md-12">
+                            <select class="form-control" name="country">
+                                {% for country in countries %}
+                                    <option value="{{ country.id }}" {% if entity.userAddress.country %}{% if country.id == entity.userAddress.country.id %}selected{% endif %}{% endif %}>{{ country.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn blue" value="Sauvegarder">
+                    <button type="button" class="btn default" data-dismiss="modal">Fermer</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+
+
+
+</div>
+
