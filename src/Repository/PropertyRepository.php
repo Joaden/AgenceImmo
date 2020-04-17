@@ -53,6 +53,13 @@ class PropertyRepository extends ServiceEntityRepository
                     ->setParameter("option$k", $option);
             }
         }
+        if ($search->getCity()) {
+            $query = $query
+                ->andWhere('p.city = city')
+                ->setParameter('city', $search->getCity());
+        }
+        dump($search);
+        die;
 
         return $query->getQuery();
             
@@ -87,6 +94,18 @@ class PropertyRepository extends ServiceEntityRepository
         // retourne un objet queryBuilder
         return $this->createQueryBuilder('p')
             ->where('p.sold = false');
+    }
+
+
+
+    // Retourne un objet de type QueryBuilder
+    // cette methode affecte les autres fonctions find
+    private function findVisibleQueryASC(): QueryBuilder
+    {
+        // retourne un objet queryBuilder
+        return $this->createQueryBuilder('p')
+            ->where('p.sold = false')
+            ->orderBy('p.id', 'ASC');
     }
 
 

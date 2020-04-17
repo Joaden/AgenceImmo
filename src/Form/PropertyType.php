@@ -28,6 +28,9 @@ class PropertyType extends AbstractType
             ->add('heat', ChoiceType::class, [
                 'choices' => $this->getChoices()
             ])
+            ->add('type', ChoiceType::class, [
+                'choices' => $this->getChoicesType()
+            ])
             ->add('options', EntityType::class, [
                 'class' => Option::class,
                 'required' => false,
@@ -35,8 +38,16 @@ class PropertyType extends AbstractType
                 'multiple' => true
             ])
             ->add('imageFile', FileType::class, [
-                'required' => false
+//                'attr' => array(
+                    'mapped' => false,
+                    'required' => false,
+                    'label' => 'upload a file',
+//                ),
+                'multiple' => true
             ])
+//            ->add('imageFile1', FileType::class, [
+//                'required' => false
+//            ])
             ->add('city')
             ->add('address')
             ->add('postal_code')
@@ -72,6 +83,16 @@ class PropertyType extends AbstractType
     public function getChoicesClass()
     {
         $choices = Property::ClassE;
+        $output = [];
+        foreach($choices as $k => $v) {
+            $output[$v] = $k;
+        }
+        return $output;
+    }
+    // choix du chauffage
+    public function getChoicesType()
+    {
+        $choices = Property::TypeT;
         $output = [];
         foreach($choices as $k => $v) {
             $output[$v] = $k;

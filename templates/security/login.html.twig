@@ -10,6 +10,11 @@
                 <h1>Connexion !</h1>
                 <h2>Identifiez-vous</h2>
                 <div class="row-flex col-6">
+                    {#{% if error %}#}
+                        {#<div class="alert alert-danger">#}
+                            {#{{ error.messageKey | trans(error.messagedata, 'security') }}#}
+                        {#</div>#}
+                    {#{% endif %}#}
                     <form action="{{ path('security_login') }}" method="POST">
                         <div class="form-group">
                             <input placeholder="Adresse email ..." required name="_username" type="text" class="form_control">

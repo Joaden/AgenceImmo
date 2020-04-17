@@ -20,4 +20,6 @@ return [
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
+//    Symfony\Component\Security\Http\Authentication\AuthenticationUtils::class => ['all' => true],
+
 ];

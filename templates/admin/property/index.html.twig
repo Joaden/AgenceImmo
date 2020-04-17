@@ -2,6 +2,35 @@
 
 {% block title 'Gérer les biens' %}
 
+{% block stylesheets %}
+
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    <style>
+    #counterNbr{
+        font-size: 1.2rem;
+        font-weight: bold;
+
+    }
+    .h1, h1 {
+        margin-left: auto;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        width: 7em;
+    }
+    .table thead th {
+        border-bottom: 2px solid #dee2e6;
+        border-bottom: 8px solid #dee2e6;
+    }
+    .table td, .table th {
+        padding: .75rem;
+        border-top: 1px solid #dee2e6;
+        padding: 0.75rem;
+        border-top: 8px solid #dee2e6;
+    }
+    </style>
+{% endblock %}
+
 {% block body %}
 <div class="container mt-5">
     
@@ -21,7 +50,7 @@
 
 
             <th>Nombre de biens :</php> </th>
-                <td> 
+                <td id="counterNbr" class="text-danger">
                         <!-- // affiche le total de biens   -->
                         {% set counter = 0 %}
                 {% set counterNbr = 0 %}
@@ -38,6 +67,7 @@
                 <th>Surface habitable</th>
                 <th>Ville</th>
                 <th>Prix du bien</th>
+                <th>Soldé</th>
                 <th>Actions</th>
                 <th>Photos</th>
             </tr>
@@ -45,13 +75,23 @@
         <tbody>
         {% for property in properties %}
         <tr>
-            <td>{{ property.title }}</td>        
+            <td class="text-info">{{ property.title }}</td>
             <td>{{ property.surface }} m²</td>        
-            <td>{{ property.city }}</td>        
+            <td class="text-success">{{ property.city }}</td>
             <td>{{ property.price }} €</td>        
+            <td{% if property.sold == 1 %}
+            class="text-danger"> Le bien est vendu !
+                {% else %}
+            class="text-primary">Bien disponible !
+                {% endif %}
+            </td>
             <td>    <!-- le liens est une route par id, pour concaténer avec twig j'utilise la tilde-->
-                <a href="{{ path('admin.property.edit', {id: property.id}) }}" class="btn btn-secondary">Editer</a>
-                
+                <a href="{{ path('property.show', {slug: property.slug, id: property.id}) }}" class="btn btn-info">Voir le bien</a>
+
+                <a href="{{ path('admin.property.edit', {id: property.id}) }}" class="btn btn-success">Editer</a>
+
+                <a href="#" class="btn btn-warning">Dupliquer le bien</a>
+
                 <form method="post" action="{{ path('admin.property.delete', {id: property.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes vous vraiment sûr?')">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value={{csrf_token('delete' ~ property.id) }}>

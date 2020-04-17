@@ -1,0 +1,890 @@
+{% extends 'base.html.twig' %}
+{% block title %}Account{% endblock %}
+
+{% block stylesheets %}{{ parent() }}
+    {#<link href="{{ asset('bundles/frontsite/plugins/footable/css/footable.metro.css') }}" rel="stylesheet" type="text/css">#}
+    <style>
+
+
+            .text_big {
+                font-size: 22px;
+                line-height: 28px;
+                color: #7c6b66;
+                font-weight: 400;
+            }
+        .button_1{
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+        .arrow_home_red{
+            display: block;
+            top: 0;
+            border-top: 26px solid #e3154b;
+            position: absolute;
+            margin-left: -26px;
+            width: 0;
+            height: 0;
+            border-left: 26px solid transparent;
+            border-right: 26px solid transparent;
+            left: 50%;
+            z-index: 5;
+        }
+        .font_bold{
+            font-weight: 600;
+        }
+        .text {
+            font-size: 18px;
+            line-height: 22px;
+        }
+        .padding_text_1{
+            padding: 10px 40px 40px 40px;
+        }
+            .footable{
+                border: 1px solid #38b6ab;
+            }
+            .footable > thead > tr > th, .footable > thead > tr > td {
+                background-color: #38b6ab;
+                border: 1px solid #38b6ab;
+                color: #ffffff;
+                border-top: none;
+                border-left: none;
+                font-weight: normal;
+            }
+            .last-content{
+                background-color: #38b6ab;
+                padding: 15px;
+                color: white;
+                font-size: 17px;
+                font-weight: 700;
+            }
+            .last-content.active{
+                background-color: rgb(253, 184, 20);
+                padding: 15px;
+                color: white;
+                font-size: 17px;
+                font-weight: 700;
+            }
+            .button_profil{
+                margin-bottom: 15px;
+                cursor: pointer;
+            }
+        .errorMail{
+            display:none;
+        }
+        .button{
+            border: none;
+        }
+            .title_green {
+                margin-top: 30px;
+                padding-bottom: 13px;
+            }
+        .alert-error{
+            background-color: red!important;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+
+    <section class=" ">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12  m_top_70 text-center">
+                    <div class="title_green">Espace membre</div>
+                </div>
+            </div>
+
+
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="button_profil" data-id="1">
+                        <div class="last-content active">Mon compte</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="button_profil" data-id="2">
+                        <div class="last-content">Mes commandes</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="button_profil" data-id="3">
+                        <div class="last-content">Mon abonnement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section>
+        <div class="container">
+
+            <div class="js-content js-content-1">
+                <form role="form" data-toggle="validator" action="#"    class="form-lp form-validation" data-validate="parsley" id="validate-form"   method="POST" >
+                <div class="row" style="margin-top: 25px">
+                    <div class="col-md-12 col-lg-12">
+
+                        {% for flashMessage in app.session.flashbag.get('success') %}<br>
+                            <div class="row">
+                                <div class="col-md-12"  >
+                                    <div class="alert alert-success" style="background-color:#38b6ab;margin-top: -10px;color:white">Informations bien enregistrées !<br></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% for flashMessage in app.session.flashbag.get('success-desabo') %}<br>
+                            <div class="row">
+                                <div class="col-md-12"  >
+                                    <div class="alert alert-success" style="background-color:#38b6ab;margin-top: -10px;color:white">Votre abonnement a bien été résilié.<br></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% for flashMessage in app.session.flashbag.get('success-maj-card') %}<br>
+                            <div class="row">
+                                <div class="col-md-12"  >
+                                    <div class="alert alert-success" style="background-color:#38b6ab;margin-top: -10px;color:white">Votre carte a bien été mise à jour.<br></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% for flashMessage in app.session.flashbag.get('success-reabo') %}<br>
+                            <div class="row">
+                                <div class="col-md-12"  >
+                                    <div class="alert alert-success" style="background-color:#38b6ab;margin-top: -10px;color:white">Votre abonnement a bien été réactivé.<br></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for flashMessage in app.session.flashbag.get('error-card') %}<br>
+                            <div class="row">
+                                <div class="col-md-12"  >
+                                    <div class="alert alert-error" style="background-color:#38b6ab;margin-top: -10px;color:white">Carte invalide !<br></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% for flashMessage in app.session.flashbag.get('response-mdp') %}<br>
+                            {{ flashMessage|raw }}
+                        {% endfor %}
+
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="title_green">
+                                    Informations personnelles
+                                </div>
+
+
+                                <div class="form-group"  >
+                                    {{ form_widget(form.mail, {'attr': {'data-bv-emailaddress-message':'Veuillez entrer une adresse valide'|trans}}) }}
+                                    <div class="errorMail">
+                                        Mail invalide
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="title_green">
+                                    Informations de livraison
+                                </div>
+
+
+                                <div class="form-group bg-margin-top"  >
+                                    {{ form_widget(form.userAddress.firstname, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.userAddress.lastname, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.userAddress.country, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.userAddress.street, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+
+                                <div class="row clearfix">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            {{ form_widget(form.userAddress.cp) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            {{ form_widget(form.userAddress.city, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <input placeholder="Téléphone (portable)*" type="tel" name="phone" value="{{ user.userInfos.phone }}" class="form-control">
+                                </div>
+
+
+
+
+
+
+                            </div>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-5">
+
+                                {% if app.user.rolesString.id == 9 %}
+
+                                <div class="title_green">Réactiver mon abonnement</div>
+
+                                <div class="text-center"><br />
+                                      <a class="button button_green" href="#" data-toggle="modal" data-target="#myModalBanq" style="padding: 10px 38px;">Ajouter ma carte</a>
+
+                                </div>
+                                {% else %}
+                                    <div class="title_green">Carte bancaire enregistrée</div>
+
+                                    <div class="text-center">
+                                        {#{% for val in app.user.userTokens %}#}
+                                            {#{% if val.isActive  %}#}
+                                                {#{{ val.cardnum|showCardNum }}#}
+                                            {#{% endif %}#}
+                                        {#{% endfor %}#}
+                                        <br /><br /> <a class="button button_green" href="#" data-toggle="modal" data-target="#myModalBanq" style="padding: 3px 38px;">Modifier</a>
+
+                                    </div>
+                                {% endif %}
+
+
+                                <br />
+                                <br />
+                                <div class="title_green" style="margin-top: 0">
+                                    Mot de passe
+                                </div>
+                                 <a class="button button_green" href="#" data-toggle="modal" data-target="#myModalPass" style="padding: 3px 38px;">Modifier</a>
+
+
+
+
+
+                                <div class="title_green">
+                                    Informations de facturation
+                                </div>
+
+
+                                <div class="form-group bg-margin-top"  >
+                                    {{ form_widget(form.userAddressInvoice.firstname, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.userAddressInvoice.lastname, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.userAddressInvoice.country, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {{ form_widget(form.userAddressInvoice.street, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                </div>
+
+
+                                <div class="row clearfix">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            {{ form_widget(form.userAddressInvoice.cp) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            {{ form_widget(form.userAddressInvoice.city, {'attr': {'data-bv-notempty':'data-bv-notempty', 'data-bv-notempty-message':'Veuillez remplir ce champ'|trans}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="row text-center">
+                            <div class="col-md-12">
+                                <div style="padding: 25px">
+                                    <input type="submit" class="button button_green" value="Valider">
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+
+            </div>
+           </form>
+      </div>
+
+            <div class="js-content js-content-2" style="display: none">
+                <div class="row" style="margin-top: 25px">
+                    <div class="col-md-12 col-lg-12">
+
+
+
+                        {#{% for boxUser in user.boxUser %}#}
+
+                        {#<div class="row" style="margin-bottom: 25px">#}
+                            {#<div class="col-md-3 text-center">#}
+                                {#{% if boxUser.box  %}#}
+                                {#<img src="{{ link_site }}/uploads/{{ boxUser.box.media.dir }}/{{ boxUser.box.media.path }}" style="max-height: 90px">#}
+                                {#<div class="title_green" style="padding-bottom: 5px">#}
+                                    {#{{ boxUser.box.name }}#}
+                                {#</div>#}
+                                {#{% else %}#}
+                                    {#<div class="title_green" style="padding-bottom: 5px">#}
+                                       {#Votre box <br /> {{ boxUser.date|dateMonthYear }}#}
+                                    {#</div>#}
+                                {#{% endif %}#}
+                        {#</div>#}
+                            <div class="col-md-9">
+                        <table class="box_abo text-center" style="  margin-top: 16px;">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center; " class="_background" data-type="numeric" data-sort-initial="true"><div class=text-center">Date</div></th>
+                                <th style="text-align: center;" class="background" data-type="numeric" data-sort-initial="true"><div class=text-center">Status</div></th>
+                                <th style="text-align: center; " class="text-center" data-type="numeric" data-sort-initial="true"><div class=text-center">N° Tracking</div></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {#{% for boxAction in boxUser.boxAction %}#}
+                                {#<tr>#}
+                                    {#<td style="text-align: center;border-radius: 0px 0px 10px 0px;">{{ boxAction.date|dateHeureFrSimple }}</td>#}
+                                    {#<td style="text-align: center;">{{ boxAction.boxUserStatus.name|statusBoxFr }}</td>#}
+                                    {#<td style="text-align: center;border-radius: 0px 0px 10px 0px;">#}
+                                        {#{% if shipper.name == 'Mobiltron' %}#}
+                                            {#<a href="{{ shipper.url }}{{ boxUser.tracking }}{{ app.user.userAddress.cp }}" target="_blank">{{ boxUser.tracking }}</a>#}
+                                        {#{% else %}#}
+                                            {#<a href="{{ shipper.url }}{{ boxUser.tracking }}" target="_blank">{{ boxUser.tracking }}</a>#}
+                                        {#{% endif %}#}
+                                    {#</td>#}
+                                {#</tr>#}
+                            {#{% endfor %}#}
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+
+
+
+
+
+
+                        {% endfor %}
+
+
+
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 25px">
+                    <div class="col-md-12 col-lg-12 text-center">
+                        Pour suivre la livraison de votre box, rendez-vous sur le site suivant <a href="{{ shipper.urlShort }}" target="_blank">{{ shipper.urlShort }}</a><br /><br /><br />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="js-content js-content-3" style="display: none">
+                <div class="row" style="margin-top: 25px;margin-bottom: 25px">
+                    <div class="col-md-12 col-lg-12">
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="title_green">
+                                    Abonnement
+                                </div>
+                                Vous avez soucrit à l'abonnement  name_site  le  app.user.userInfos.dateInscription|dateFr
+                            </div>
+                        </div>
+
+
+                        <table class="box_abo text-center" style="  margin-top: 16px;">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center;" class="background" data-type="numeric" data-sort-initial="true"><div class=text-center">Abonnement</div></th>
+                                <th style="text-align: center;" class="_background text-center" data-type="numeric" data-sort-initial="true"><div class=text-center">Date prélèvement</div></th>
+                                <th style="text-align: center;" class="_background text-center" data-type="numeric" data-sort-initial="true"><div class=text-center">Statut</div></th>
+                                <th style="text-align: center;" class="_background text-center" data-type="numeric" data-sort-initial="true"><div class=text-center">Montant</div></th>
+                                <th style="text-align: center; " class="text-center" data-type="numeric" data-sort-initial="true"><div class=text-center">Facture</div></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {#{% for payment in user.payment %}#}
+                                {#<tr>#}
+                                    {#<td style="text-align: center;">Box mensuelle</td>#}
+                                    {#<td style="text-align: center;">{{ payment.nextPaymentDate|dateFr }}</td>#}
+                                    {#<td style="text-align: center;">{{ payment|PaymentStatusTableau }}</td>#}
+                                    {#<td style="text-align: center;">{{ payment.transactionPrice }} €</td>#}
+                                    {#<td style="text-align: center;border-radius: 0px 0px 10px 0px;">{% if payment.invoice %}<a href="{{ payment.invoice }}" target="_blank">Voir facture</a>{% endif %}</td>#}
+                                {#</tr>#}
+                            {#{% endfor %}#}
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 10px">
+                        <div class="col-md-12 text-center"  style="margin-top: 30px">
+
+                            {% if app.user.rolesString.id == 6 %}
+                                <button  data-toggle="modal"   data-target="#myModalBanq" class="button button_green">Réactiver mon abonnement</button>
+                            {% else %}
+                                <button  data-toggle="modal" data-target="#desabo" class="button button_green">Me désabonner</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalBanq" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 60%;">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h4 class="modal-title" id="myModalLabel">  {% if app.user.rolesString.id == 6 %}{{ 'Ajouter une carte bancaire'|trans }}{% else %}{{ 'Modification de votre carte bancaire'|trans }}{% endif %}
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </h4>
+                </div>
+
+                <form role="form" data-toggle="validator"  action="{{ path('edit_card_user') }}"  data-validate="parsley" class="validate-form-payment" id="validate-form-payment"    method="POST" >
+                    <div class="modal-body" style="background-color: #f8f8f8;">
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div style="margin-left: 15%;">
+                                    <div>N° de la carte</div>
+                                    {#{% if paymentTypes is defined %}#}
+                                    {#<input value="{% if envTest != 0  %}{% if campaign.paymentTypes.nameConfig == "Hipay" %}4111111111111111{% endif %}{% if campaign.paymentTypes.nameConfig == "PayPlug" %}4242 4242 4242 4242{% endif %}{% endif %}" type="text" class="form-control"  name="ccNumber" id="ccNumber" placeholder="Numéro de carte">#}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div>Date de validité</div>
+                                <input type="hidden" value="" name="mail">
+                                <input type="hidden" id="token" name="token">
+                                {#<select class="form-control" name="exp-month" id="js-exp-month"  data-stripe="exp-month" style="margin-left: 2px;width: 45%;display: inline-block;">#}
+                                    {#{% for i in 1..12 %}#}
+                                        {#<option>{% if i|length == 1 %}0{{ i }}{% else %}{{ i }}{% endif %}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+
+                                {#<select class="form-control " name="exp-year" id="js-exp-year" data-stripe="exp-year" style="width: 45%;display: inline-block;">#}
+                                    {#{% for i in "now"|date("Y").."now"|date_modify("+20 year")|date("Y") %}#}
+                                        {#<option {% if envTest != 0  and i == "2020" %}selected{% endif %}>{{ i }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
+                            </div>
+                            <div class="col-md-3">
+                                <div style="margin-right: 15%;">
+                                    <div>Cryptogramme</div>
+                                    {#<input type="text" class="form-control cvvNumber" value="{% if envTest != 0 %}555{% endif %}" name="cvvNumber" id="crypto" placeholder="Cryptogramme">#}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer button_submit"  >
+                        <button type="submit" class="button button_green">{{ 'Valider'|trans }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModalPass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 40%;">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h4 class="modal-title" id="myModalLabel">{{ 'Modification mot de passe'|trans }}
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </h4>
+                </div>
+
+                <form role="form" data-toggle="validator"  action="{{ path('edit_password') }}"  data-validate="parsley" class="validate-form-2" id="validate-form-2"    method="POST" >
+                    <div class="modal-body" style="background-color: #f8f8f8;">
+
+                        <div class="form-group">
+                            {{ 'Ancien mot de passe'|trans }}
+                            <input type="password" name="old_passe" class="form-control form-control-style" >
+                        </div>
+                        <div class="form-group">
+                            {{ 'Nouveau mot de passe'|trans }}
+                            <input type="password" name="new_passe" placeholder="3 caractères minimum" class="form-control form-control-style" >
+                        </div>
+                        <div class="form-group">
+                            {{ 'Confirmer mot de passe'|trans }}
+                            <input type="password" name="conf_passe" placeholder="3 caractères minimum" class="form-control form-control-style" >
+                        </div>
+                    </div>
+                    <div class="modal-footer"  >
+                        <button type="submit" class="btn green-btn feature-btn">{{ 'Valider'|trans }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="desabo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width: 40%;">
+            <div class="modal-content">
+                <div class="modal-header text-" style="border-bottom: 1px solid black;color:black">
+                    <span style="font-size: 20px" class="modal-title" id="myModalLabel">  {{ 'Commentaires'|trans }}</span>
+                    <button type="button" style="    margin-top: -17px;" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <form role="form" data-toggle="validator" action="{{ path('user_account_resiliation') }}" data-validate="parsley" class="validate-form-2"     method="POST" >
+                    <div class="modal-body" style="background-color: #f8f8f8;">
+
+                        <div class="form-group">
+                            <p>
+                                Pouvez-vous nous indiquer les raisons de votre départ? Vos commentaires nous aident à nous améliorer.
+                            </p>
+                            <textarea rows="5" cols="50" style="width: 100%;" name="comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer"  >
+                        <button type="button" class="btn green-btn-spe feature-btn-spe" style="background-color: red!important;margin-bottom: 1px;" data-dismiss="modal" aria-label="Close">Fermer</button>
+                        <button type="submit" class="btn green-btn-spe feature-btn-spe">{{ 'Confirmer'|trans }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}{{ parent() }}
+    {#{% if paymentTypes is defined %}#}
+        {#{% if campaign.paymentTypes.nameConfig == 'Hipay' %}#}
+        {#<script type="text/javascript" src="{{ asset('bundles/frontsite/js/hipay-fullservice-sdk.js') }}"></script>#}
+    {#{% endif %}#}
+
+    <script src="{{ asset('bundles/frontsite/plugins/footable/js/footable.js') }}"></script>
+    <script src="{{ asset('bundles/frontsite/plugins/footable/js/footable.sort.js') }}"></script>
+
+    <script src="{{ asset('bundles/frontsite/plugins/formvalidation/dist/js/formValidation.min.js') }}"></script>
+<script>
+    $('.button_profil').click(function() {
+        var id = $(this).attr('data-id');
+        $('.js-content').hide();
+        $('.last-content').removeClass('active');
+        $(this).children().addClass('active');
+        $('.js-content-'+id).show();
+    });
+    $(function () {
+        $('table').footable();
+    });
+
+
+
+    jQuery(document).ready(function() {
+
+        var cp = "^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$";
+        var phone = "^(06|07)[0-9]{8}$";
+        $('.form-validation').bootstrapValidator({
+            framework: 'bootstrap',
+            err: {
+                container: 'tooltip'
+            },
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'user_edit[userAddress][firstname]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Nom obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddress][lastname]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Prenom obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddress][country][name]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Pays obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddress][street]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Addresse obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddress][cp]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Champ vide'
+                        },
+                        integer: {
+                            message: 'Erreur CP'
+                        },
+                        regexp: {
+                            regexp: cp,
+                            message: 'Erreur CP'
+                        }
+                    }
+                },
+                'user_edit[userAddress][city]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Ville obligatoire'
+                        }
+                    }
+                }, 'user_edit[userAddressInvoice][firstname]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Nom obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddressInvoice][lastname]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Prenom obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddressInvoice][country][name]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Pays obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddressInvoice][street]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Addresse obligatoire'
+                        }
+                    }
+                },
+                'user_edit[userAddressInvoice][cp]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Champ vide'
+                        },
+                        integer: {
+                            message: 'Erreur CP'
+                        },
+                        regexp: {
+                            regexp: cp,
+                            message: 'Erreur CP'
+                        }
+                    }
+                },
+                'user_edit[userAddressInvoice][city]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Ville obligatoire'
+                        }
+                    }
+                },
+                'phone': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Validation obligatoire'
+                        },
+                        regexp: {
+                            regexp: phone,
+                            message: 'Numéro invalide'
+                        }
+                    }
+                },
+                'user_edit[mail]': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Email obligatoire'
+                        },
+                        emailAddress: {
+                            message: 'Mauvais format de mail'
+                        },
+                    }
+                },
+            }
+
+        });
+
+
+
+
+        $('.validate-form-2').bootstrapValidator({
+            framework: 'bootstrap',
+            err: {
+                container: 'tooltip'
+            },
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'old_passe': {
+                    validators: {
+                        notEmpty: {
+                            message: 'Ancien mot de passe obligatoire'
+                        },
+                    }
+                },
+                new_passe: {
+                    validators: {
+                        identical: {
+                            field: 'conf_passe',
+                            message: 'Les mots de passe ne correspondent pas'
+                        },
+                        notEmpty: {
+                            message: 'Champ obligatoire'
+                        },
+                        stringLength: {
+                            min: 3,
+                            max: 25,
+                            message: 'Le mot de passe doit être compris entre 3 et 25 caractères'
+                        }
+                    }
+                },
+                conf_passe: {
+                    validators: {
+                        identical: {
+                            field: 'new_passe',
+                            message: 'Les mots de passe ne correspondent pas'
+                        },
+                        notEmpty: {
+                            message: 'Champ obligatoire'
+                        }
+                    }
+                }
+            }
+        })
+
+    });
+
+    var allowSubmit = false;
+    $('#validate-form-payment').bootstrapValidator({
+        framework: 'bootstrap',
+        err: {
+            container: 'tooltip'
+        },
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            'exp-month': {
+                validators: {
+                    notEmpty: {
+                        message: 'Champ obligatoire'
+                    }
+                }
+            },
+            'exp-year': {
+                validators: {
+                    notEmpty: {
+                        message: 'Champ obligatoire'
+                    }
+                }
+            },
+            'cvvNumber': {
+                validators: {
+                    notEmpty: {
+                        message: 'Champ obligatoire'
+                    },
+                    cvv: {
+                        creditCardField: 'ccNumber',
+                        message: 'Cryptogramme invalide'
+                    }
+                }
+            },
+            ccNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Champ obligatoire'
+                    },
+                    creditCard: {
+                        message: 'Numéro de carte invalide'
+                    }
+                }
+            },
+        }
+
+    }).on('success.form.bv', function(e) {
+        var $form = $(e.target);
+        // Prevent form submission
+        if(!allowSubmit) {
+            e.preventDefault();
+            // Get the form instance
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+            $('.button_submit').html('<div class="text-center"><i class="fa fa-cog fa-spin fa-4x"></i></div><br />');
+
+            {% if campaign.paymentTypes.nameConfig == 'Hipay'  and envTest != 1 %}
+            var params = {
+                card_number: $('#ccNumber').val(),
+                cvc: $('#crypto').val(),
+                card_expiry_month: $('#js-exp-month').val(),
+                card_expiry_year: $('#js-exp-year').val(),
+                card_holder: "{{ app.user.userAddress.firstname }} {{ app.user.userAddress.lastname }}",
+                multi_use: '1'
+            };
+            var api_user_hipay = "{{ campaign.paymentTypes.apiUsernamePublic }}";
+            var api_key_hipay = "{{ campaign.paymentTypes.apiPasswordPublic|decryptPsp }}";
+            var stage = "{{ envTest }}";
+            if (stage == 2) {
+                HiPay.setTarget('stage');
+            }
+            // These are fake credentials, put your own credentials here (HiPay Enterprise back office > Integration > Security settings and create credentials with public visibility)
+            HiPay.setCredentials(api_user_hipay, api_key_hipay);
+            HiPay.create(params,
+                    function (result) {
+                        token = result.token;
+                        $('#token').val(token);
+
+                        allowSubmit = true;
+                        $('#validate-form-payment').submit();
+                    });
+
+
+        {% endif %}
+        }
+    });
+
+    {% endif %}
+
+</script>
+{% endblock %}

@@ -17,6 +17,8 @@ use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Doctrine\Common\Persistence\ObjectManager;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 
 class AdminPropertyController extends AbstractController
 {
@@ -44,9 +46,15 @@ class AdminPropertyController extends AbstractController
      */
     public function index()
     {
+        //     * @Template("@admin/property/index.html.twig")
+
         // findAll pour tout recuperer car l'admin doit pouvoir voir tout
-        $properties = $this->repository->findAll();
+//        $properties = $this->repository->findAll();
+        $properties = $this->repository->findBy(array(), array('id' => 'DESC'));
+//        dump($properties);
+//        die;
         // renvois vers la page index avec un tableau compact
+//        return $this->findBy(array(), array('id' => 'ASC'));
         return $this->render('admin/property/index.html.twig', compact('properties'));
     }
 
@@ -57,12 +65,26 @@ class AdminPropertyController extends AbstractController
     {
         // création manuelle, create form,
         $property = new Property();
+
         $form = $this->createForm(PropertyType::class, $property);
+
         $form->handleRequest($request);
-        //exit(var_dump($property));
+
+//        $files = $request->files->get('post')['my_files'];
+//        dump($files);
+//        foreach($file as $files)
+//            {
+//                $filename = md5(uniqid()) . '.' . $file->guessExtension();
+//                $file->move($uploads_directory,
+//                            $filename);
+//            }
+
+//
 
         if($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($property);
+            dump($property);
+//            die;
             $this->em->flush();
             $this->addFlash('success', 'Le bien a été créé avec succès');
             return $this->redirectToRoute('admin.property.index');

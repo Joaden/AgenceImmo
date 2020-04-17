@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
@@ -71,14 +72,51 @@ class SecurityController extends AbstractController
         ]);
     }
     
+//
+//    /**
+//     * @Route("/connexion", name="security_login")
+//     */
+//    public function login()
+//    {
+//        return $this->render('security/login.html.twig');
+//    }
+
 
     /**
      * @Route("/connexion", name="security_login")
      */
-    public function login() 
+    public function login()
     {
         return $this->render('security/login.html.twig');
     }
+//
+//    /**
+//     * @Route("/connexion", name="security_login")
+//     */
+//    public function login(AuthenticationUtils $authenticationUtils)
+//    {
+//
+//        dump('SecurityController => loginAction');
+//        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
+//        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+//            return $this->redirect($this->generateUrl('admin_home'));
+//        }
+//
+//        $authenticationUtils = $this->get('security.authentication_utils');
+//
+//        // get the login error if there is one
+//        $error = $authenticationUtils->getLastAuthenticationError();
+//
+//        // last username entered by the user
+//        $lastUsername = $authenticationUtils->getLastUsername();
+//
+//        return $this->render('security/login.html.twig', [
+//            'last_username' => $lastUsername,
+//            'error'         => $error,
+//        ]);
+//
+//
+//    }
 
     /**
      * @Route("/deconnexion", name="security_logout")

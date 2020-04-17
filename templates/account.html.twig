@@ -3,7 +3,39 @@
 {% block title %}Account{% endblock %}
 
 {% block body %}
-<div class="container">
+
+    <section class=" ">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12  m_top_70 text-center">
+                    <div class="title_green">Espace membre</div>
+                </div>
+            </div>
+
+
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="button_profil" data-id="1">
+                        <div class="last-content active">Mon compte</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="button_profil" data-id="2">
+                        <div class="last-content">Mes commandes</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="button_profil" data-id="3">
+                        <div class="last-content">Mon abonnement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="container">
     <h1>Bonjour, <br>{{ users.username }}</h1>
     <?php
         echo "Bonjour, je suis un script PHP !";

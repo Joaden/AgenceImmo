@@ -37,6 +37,20 @@ class Property
         6 => 'F',
         7 => 'G'
     ];
+    const TypeT = [
+        0 => '',
+        1 => 'Maison',
+        2 => 'Appartement',
+        3 => 'Terrain',
+        4 => 'Dépendance',
+        5 => 'Loft',
+        6 => 'Chateau',
+        7 => 'Batiment',
+        8 => 'Boutique',
+        9 => 'Local commercial',
+        10 => 'Bureau',
+        11 => 'Chambre'
+    ];
 
     /**
      * @ORM\Id()
@@ -47,7 +61,7 @@ class Property
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
     // variable de l'image 
@@ -66,6 +80,12 @@ class Property
      * @Assert\Length(min=5, max=50)
      */
     private $title;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ref;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -103,6 +123,12 @@ class Property
      * 
      */
     private $heat;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     */
+    private $type;
 
     /**
      * @ORM\Column(type="string", length=250)
@@ -158,6 +184,36 @@ class Property
         //$this->sold = false;
     }
 
+//    /**
+//     * @inheritDoc
+//     */
+//    public function eraseCredentials()
+//    {
+//    }
+//
+//    /**
+//     * @see \Serializable::serialize()
+//     */
+//    public function serialize()
+//    {
+//        return serialize(array(
+//            $this->id,
+//            $this->mail,
+//        ));
+//    }
+//
+//    /**
+//     * @see \Serializable::unserialize()
+//     */
+//    public function unserialize($serialized)
+//    {
+//        list (
+//            $this->id,
+//            ) = unserialize($serialized);
+//    }
+//
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -174,6 +230,21 @@ class Property
 
         return $this;
     }
+
+
+    public function getRef(): ?string
+    {
+        return $this->ref;
+    }
+
+    public function setRef(string $ref): self
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+
     public function getSlug(): string
     {
         // 2 méthodes :
@@ -333,6 +404,25 @@ class Property
         return self::ClassE[$this->class_energy];
     }
 
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getTypeT(): string
+    {
+        //renvoi this =le type
+        return self::Type[$this->type];
+    }
+
     public function getSold(): ?bool
     {
         return $this->sold;
@@ -432,6 +522,7 @@ class Property
     public function setImageFile(?File $imageFile): Property
     {   // Si l'image est de type uploadedFile, no m'est a jour le updated_at pour la persistance
         $this->imageFile = $imageFile;
+
         if ($this->imageFile instanceof UploadedFile)
         {
             $this->updated_at = new \DateTime('now');
