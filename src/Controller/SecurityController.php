@@ -72,14 +72,6 @@ class SecurityController extends AbstractController
         ]);
     }
     
-//
-//    /**
-//     * @Route("/connexion", name="security_login")
-//     */
-//    public function login()
-//    {
-//        return $this->render('security/login.html.twig');
-//    }
 
 
     /**
@@ -89,7 +81,7 @@ class SecurityController extends AbstractController
     {
         return $this->render('security/login.html.twig');
     }
-//
+
 //    /**
 //     * @Route("/connexion", name="security_login")
 //     */
@@ -99,7 +91,7 @@ class SecurityController extends AbstractController
 //        dump('SecurityController => loginAction');
 //        // Si le visiteur est déjà identifié, on le redirige vers l'accueil
 //        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-//            return $this->redirect($this->generateUrl('admin_home'));
+//            return $this->redirect($this->generateUrl('home'));
 //        }
 //
 //        $authenticationUtils = $this->get('security.authentication_utils');

@@ -16,9 +16,9 @@
                 <div class="col">Options
                     {{ form_row(form.options) }}
                 </div>
-                <div class="col">Ville
-                    {{ form_row(form.city) }}
-                </div>
+                {#<div class="col">Ville#}
+                    {#{{ form_row(form.city) }}#}
+                {#</div>#}
                 {#<div class="col">#}
                     {#{{ form_row(form.type) }}#}
                 {#</div>#}
@@ -33,10 +33,13 @@
     </div>
         <div class="container mt-4">
             <h1>Voir tous nos biens</h1>
+
+
+
             <p>Vous pouvez effectuer une recherche d'un bien selon vos critères.<br>
             Cliquez sur le titre de l'annonce pour voir les détails.</p>
             
-            <div class="row">
+            <div class="hover01 row">
                 {% for property in properties %}
                     <div class="col-md-4">
                         {% include 'property/_property.html.twig' %}

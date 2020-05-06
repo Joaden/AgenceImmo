@@ -41,7 +41,7 @@ class AdminPropertyController extends AbstractController
     }
 
     /**
-     * @Route("/admin", name="admin.property.index")
+     * @Route("/admin/property", name="admin.property.index")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()

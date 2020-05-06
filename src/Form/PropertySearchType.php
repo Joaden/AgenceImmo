@@ -3,16 +3,14 @@
 namespace App\Form;
 
 use App\Entity\PropertySearch;
-use App\Entity\Property;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
 use App\Entity\Option;
+use App\Entity\Property;
 
 class PropertySearchType extends AbstractType
 {
@@ -40,13 +38,13 @@ class PropertySearchType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true
             ])
-            ->add('city', EntityType::class, [
-                'required' => false,
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Entrer un lieu'
-                ]
-            ])
+//            ->add('city', EntityType::class, [
+//                'required' => false,
+//                'label' => false,
+//                'attr' => [
+//                    'placeholder' => 'Entrer un lieu'
+//                ]
+//            ])
 //            ->add('optionsType', EntityType::class, [
 //                'required' => false,
 //                'label' => false,
@@ -55,8 +53,10 @@ class PropertySearchType extends AbstractType
 //                'multiple' => true
 //            ])
 //            ->add('type', ChoiceType::class, [
+//                'required' => false,
 //                'choices' => $this->getChoicesType()
 //            ])
+
             //->add('submit', SubmitType::class, [
             //   'label' => 'Rechercher'
             //])
@@ -79,13 +79,13 @@ class PropertySearchType extends AbstractType
     }
 
     // choix du chauffage
-//    public function getChoicesType()
-//    {
-//        $choices = Property::TypeT;
-//        $output = [];
-//        foreach($choices as $k => $v) {
-//            $output[$v] = $k;
-//        }
-//        return $output;
-//    }
+    public function getChoicesType()
+    {
+        $choices = Property::TypeT;
+        $output = [];
+        foreach($choices as $k => $v) {
+            $output[$v] = $k;
+        }
+        return $output;
+    }
 }

@@ -1,4 +1,5 @@
-<div class="card mb-4">
+<div class="hover01 card mb-4">
+{#<div  class="hover09">#}
     {% if property.filename %}
     <!-- <img src="/images/properties/{{ property.filename }}" alt="card-img-top" style="width: 100%; height:auto;"> -->
         <img src="{{ vich_uploader_asset(property, 'imageFile') | imagine_filter('thumb') }}" alt="card-img-top" style="width: 100%; height:auto;">

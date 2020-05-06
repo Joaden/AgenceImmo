@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Property;
 use App\Repository\PropertyRepository;
 use App\Form\PropertySearchType;
+use App\Form\PropertyType;
 use App\Form\ContactType;
 use App\Entity\PropertySearch;
 use App\Entity\Contact;
@@ -58,9 +59,15 @@ class PropertyController extends AbstractController
         // je crée une entitée vide
         $search = new PropertySearch();
         // je lui passe le type a utiliser
+
+    dump($search);
+//    die;
         $form = $this->createForm(PropertySearchType::class, $search);
         //gere la requete
+
+
         $form->handleRequest($request);
+
 
         $properties = $paginator->paginate(
             $this->repository->findAllVisibleQuery($search),
@@ -85,7 +92,6 @@ class PropertyController extends AbstractController
         // 4. Return a number as response
         // e.g 972
       //  return new Response($totalProperty);
-    
 
         return $this->render('property/index.html.twig', [
             'current_menu' => 'properties',

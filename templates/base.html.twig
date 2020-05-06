@@ -6,7 +6,7 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% block stylesheets %}
         
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
@@ -62,25 +62,38 @@
                     <a class="nav-link" href="{{path('security_login')}}">Se connecter</a>
                 </li>
             {% else %}
+                <div class="divider-vertical"></div>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#" style="text-shadow: 1px 2px 2px #1C6EA4;">Bienvenue {{ app.user.username }}</a>
                 </li>
             {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item" style="text-shadow: 1px 2px 2px #FFBF00;">
-                    <a class="nav-link" href="{{ path('admin.property.index') }}" style="text-shadow: 1px 2px 2px #FFBF00;">Gérer les biens</a>
+                <li class="nav-item dropdown red">
+                    <a class="nav-link dropdown-toggle red" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Back-Office
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('admin') }}">Administration</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('admin.property.index') }}">Gestion des biens</a>
+                        <a class="dropdown-item" href="{{ path('admin_user.index') }}">Gestion des utilisateurs</a>
+                    </div>
                 </li>
-                <li class="nav-item" style="text-shadow: 1px 2px 2px #FFBF00;">
-                    <a class="nav-link" href="{{ path('admin_user.index') }}" style="text-shadow: 1px 2px 2px #FFBF00;">Gérer les utilisateurs</a>
-                </li>
+                {#<li class="nav-item" style="text-shadow: 1px 2px 2px #FFBF00;">#}
+                    {#<a class="nav-link" href="{{ path('admin.property.index') }}" style="text-shadow: 1px 2px 2px #FFBF00;">Gérer les biens</a>#}
+                {#</li>#}
+                {#<li class="nav-item" style="text-shadow: 1px 2px 2px #FFBF00;">#}
+                    {#<a class="nav-link" href="{{ path('admin_user.index') }}" style="text-shadow: 1px 2px 2px #FFBF00;">Gérer les utilisateurs</a>#}
+                {#</li>#}
             {% endif %}
                 <li class="nav-item">
-                    <a href="{{path('email')}}" class="nav-link">Mes messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
+                    <a href="{{path('email')}}" class="nav-link">Messages</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{path('account')}}">Mon compte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
                 </li>
             {% endif %}
             </ul>
@@ -184,13 +197,15 @@
                         <a href="#">Denis Chanet</a>
                     </div>
                 </div>
-                <a class="back-to-top" href="#" style="display: inline;">
-            <img id="back-to-top" src="" alt="back-to-top"></a>
+                <a class="back-to-top" href="#" style="display: inline;"><p>Back to top</p>
+                    {#<i class="fas fa-angle-up"></i>#}
+                    {#<img id="back-to-top" src="" alt="back-to-top">#}
+                </a>
             <!--Linkedin-->
-            <button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>
-            
+                    {#<i class="icon icon-back"></i>#}
+            {#<button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>#}
             </div>
-            <a href=""></a>
+            {#<a href=""></a>#}
             
         </footer>
         

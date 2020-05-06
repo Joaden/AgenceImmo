@@ -42,10 +42,13 @@ class HomeController extends AbstractController
         //on a injecté le propertyrepo dans le index,(plus besoin du $this->)
         // je récupère le derniers biens créés avec la methode findLatest()
         // puis je renvoi les données sur la page home avec les properties en parametre
+
         $properties = $repository->findLatest();
+
         return $this->render('pages/home.html.twig', [
             'properties' => $properties
         ]);
+
       //return new Response('coucou');
     }
 

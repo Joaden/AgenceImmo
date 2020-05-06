@@ -41,7 +41,7 @@ class PropertyRepository extends ServiceEntityRepository
                 ->setParameter('minsurface', $search->getMinSurface());
         }
 
-        if ($search->getOptions()->count() > 0) 
+        if ($search->getOptions()->count() > 0)
         {
             $k = 0;
             foreach($search->getOptions() as $option)
@@ -53,16 +53,9 @@ class PropertyRepository extends ServiceEntityRepository
                     ->setParameter("option$k", $option);
             }
         }
-        if ($search->getCity()) {
-            $query = $query
-                ->andWhere('p.city = city')
-                ->setParameter('city', $search->getCity());
-        }
-        dump($search);
-        die;
 
         return $query->getQuery();
-            
+
         //conditions
         //->Where('p.sold = false')
         //->setParameter('val', $value)
@@ -75,7 +68,7 @@ class PropertyRepository extends ServiceEntityRepository
     }
 
     /**
-     * 
+     *
      * @Return Property[];
      */
     public function findLatest(): array
@@ -86,26 +79,14 @@ class PropertyRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    
+
     // Retourne un objet de type QueryBuilder
     // cette methode affecte les autres fonctions find
     private function findVisibleQuery(): QueryBuilder
-    {   
-        // retourne un objet queryBuilder
-        return $this->createQueryBuilder('p')
-            ->where('p.sold = false');
-    }
-
-
-
-    // Retourne un objet de type QueryBuilder
-    // cette methode affecte les autres fonctions find
-    private function findVisibleQueryASC(): QueryBuilder
     {
         // retourne un objet queryBuilder
         return $this->createQueryBuilder('p')
-            ->where('p.sold = false')
-            ->orderBy('p.id', 'ASC');
+            ->where('p.sold = false');
     }
 
 

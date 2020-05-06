@@ -1,0 +1,55 @@
+{% extends 'base_back.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+<div class="jumbotron text center">
+    <h1 class="titleSnake">Bienvenue dans l'espace Administrateur !</h1>
+</div>
+
+{#{% include 'admin/menu.html.twig' %}#}
+{% include 'admin/navBarLeft.html.twig' %}
+
+<section>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+            <div class="portlet solid blue">
+                <div class="portlet-body">
+                    <h4 class="block js-change-date"> {{ 'Statistiques pour la journée du '|trans }}  date|date </h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption" style="line-height: 8px;">
+                        {{ 'Tri par date'|trans }}
+                    </div>
+                </div>
+                <div class="portlet-body text-center">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div style="float:left;width:80%">
+                                <div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm js-date1 form-control" value="" name="start" />
+                                    <span class="input-group-addon">{{ 'au'|trans }}</span>
+                                    <input type="text" class="input-sm js-date2 form-control" value=""  name="end" />
+                                </div>
+                            </div>
+                            <div style="float:left"><button type="button" style="line-height: 1;" id="js-update-date" class="btn green">Ok</button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

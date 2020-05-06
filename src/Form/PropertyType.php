@@ -26,9 +26,12 @@ class PropertyType extends AbstractType
             ->add('floor')
             ->add('price')
             ->add('heat', ChoiceType::class, [
-                'choices' => $this->getChoices()
+                'choices' => $this->getChoices(),
+                'required' => false,
+
             ])
             ->add('type', ChoiceType::class, [
+                'required' => false,
                 'choices' => $this->getChoicesType()
             ])
             ->add('options', EntityType::class, [
@@ -38,11 +41,11 @@ class PropertyType extends AbstractType
                 'multiple' => true
             ])
             ->add('imageFile', FileType::class, [
-//                'attr' => array(
+                'attr' => array(
                     'mapped' => false,
                     'required' => false,
                     'label' => 'upload a file',
-//                ),
+                ),
                 'multiple' => true
             ])
 //            ->add('imageFile1', FileType::class, [
@@ -52,7 +55,9 @@ class PropertyType extends AbstractType
             ->add('address')
             ->add('postal_code')
             ->add('class_energy', ChoiceType::class, [
+                'required' => false,
                 'choices' => $this->getChoicesClass()
+
             ])
             ->add('sold')
             ->add('parking')

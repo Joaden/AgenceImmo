@@ -10,9 +10,10 @@ body {
 }
 
 .titleSnake{
-    text-shadow: 1px 3px 3px #00a0a4;
+    text-shadow: 1px 3px 3px #a40a1c;
     text-decoration: none;
     text-align: center;
+    color: darkkhaki;
 }    
 /*****        NAV BAR START          *****/
 nav{
@@ -26,6 +27,92 @@ nav{
 
 .container{
     padding-bottom: 30px;
+}
+
+/* Side Menu */
+#sidebar-wrapper {
+    position: fixed;
+    z-index: 2;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    transition: all 0.4s ease 0s;
+    transform: translateX(250px);
+    background: #1D809F;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li.sidebar-nav-item a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    padding: 15px;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    font-size: 1.2rem;
+    background: rgba(52, 58, 64, 0.1);
+    height: 80px;
+    line-height: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #fff;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+#sidebar-wrapper.active {
+    right: 250px;
+    width: 250px;
+    transition: all 0.4s ease 0s;
+}
+
+.menu-toggle {
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: #fff;
+    background: rgba(52, 58, 64, 0.5);
+    line-height: 50px;
+    z-index: 999;
+}
+
+.menu-toggle:focus, .menu-toggle:hover {
+    color: #fff;
+}
+
+.menu-toggle:hover {
+    background: #343a40;
 }
 
 /*****        NAV BAR START          *****/
@@ -46,7 +133,7 @@ nav{
     letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
-    box-shadow: 0 20px 50px rgba(45, 253, 30, 0.50);
+    box-shadow: 0 20px 50px rgba(0, 0, 0,.5);
     overflow: hidden;
 }
 .jumbotronTitle a:before{
@@ -430,5 +517,5 @@ li{
     
 }
 .back-to-top{
-    color: white;
+    color: darkred;
 }

@@ -83,6 +83,7 @@ class Property
 
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255)
      */
     private $ref;
@@ -420,7 +421,7 @@ class Property
     public function getTypeT(): string
     {
         //renvoi this =le type
-        return self::Type[$this->type];
+        return self::TypeT[$this->type];
     }
 
     public function getSold(): ?bool

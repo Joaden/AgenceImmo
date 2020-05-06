@@ -20,8 +20,7 @@
 <section>
 
     <div class="container">
-        <h2>Nos nouveaux biens</h2><p>Bienvenue !!! Nous sommes le <?php echo date('d/m/Y h:i:s'); ?>{{ "now"|date("m/d/Y") }}.</p>
-            <?php echo "Bonjour, Comment puis-je vous aider? "; ?>
+        <h2>Nos nouveaux biens</h2><p>Bienvenue !!! Nous sommes le {{ "now"|date("m/d/Y") }}.</p>
         <div class="row flex">
             {% for property in properties %}
             <div class="col-lg-3 col-md-6">
@@ -109,5 +108,68 @@
             <div></div>
         </div>
     </div>
-</section>        
+</section>
+
+<section id="pictures">
+    <div class="container">
+        <div class="pictures-header">
+            <h1>Somes Effect Pictures</h1>
+
+            <h2 id="demo01">Effect Zoom In</h2>
+            <div class="hover01 column">
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=244" /></figure>
+                    <span>Hover</span>
+                </div>
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=1024" /></figure>
+                    <span>Hover</span>
+                </div>
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=611" /></figure>
+                    <span>Hover</span>
+                </div>
+            </div>
+
+            <h2 id="demo09">Effect Sepia</h2>
+            <div class="hover09 column">
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=244" /></figure>
+                    <span>Hover</span>
+                </div>
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=1024" /></figure>
+                    <span>Hover</span>
+                </div>
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=611" /></figure>
+                    <span>Hover</span>
+                </div>
+            </div>
+
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate obcaecati voluptates repudiandae quis neque nisi aspernatur nulla dolor nemo, officiis est, odio ab eveniet magnam repellat, eos ratione explicabo quisquam?
+            </p>
+        </div>
+        <div class="pictures-content">
+            <h2 id="demo07">Effect Blur</h2>
+            <div class="hover07 column">
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=244" /></figure>
+                    <span>Hover</span>
+                </div>
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=1024" /></figure>
+                    <span>Hover</span>
+                </div>
+                <div>
+                    <figure><img src="https://picsum.photos/300/200?image=611" /></figure>
+                    <span>Hover</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
     {% endblock %}

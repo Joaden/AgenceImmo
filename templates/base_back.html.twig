@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr" class="no-js">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% block stylesheets %}
+        
+        <link rel="stylesheet" href="{{ asset('build/app_back.css') }}">
+        
+        {{ encore_entry_link_tags('app') }}
+        
+        {% endblock %}
+
+        <style>
+        </style>
+    </head>
+    <body>
+    <!-- body navbar fixed-top   style="background-color: #9933ff;"   -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{{ path('admin') }}">Back-Office</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('home') }}">FRONT</a>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto" style="text-shadow: 1px 2px 2px #1C6EA4;">
+
+            {% if not app.user %}
+          
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('security_registration') }}">S'inscrire</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('security_login')}}">Se connecter</a>
+                </li>
+            {% else %}
+                <div class="divider-vertical"></div>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="text-shadow: 1px 2px 2px #1C6EA4;">Bienvenue {{ app.user.username }}</a>
+                </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown red">
+                    <a class="nav-link dropdown-toggle red" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Back-Office
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('admin') }}">Administration</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ path('admin.property.index') }}">Gestion des biens</a>
+                        <a class="dropdown-item" href="{{ path('admin_user.index') }}">Gestion des utilisateurs</a>
+                    </div>
+                </li>
+            {% endif %}
+                <li class="nav-item">
+                    <a href="{{path('email')}}" class="nav-link">Mes messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('account')}}">Mon compte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
+                </li>
+            {% endif %}
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <!-- <li class="nav-item">
+                
+                <button type="button" class="btn btn-secondary float-right"><a class="nav-link" href="#">Compte</a></button>
+            </li> -->
+        </div>
+    </nav>
+        <!-- endbody navbar -->
+        {% block body %}
+
+        {% endblock %}
+    
+        {% block footer %}
+        
+        
+        <footer id="footer">
+            <div class="footer-top">
+                <div class="container-copyright">
+                    <div class="copyright">&copy; Copyright <strong>Agence de Limeil</strong>
+                        
+                    </div>
+                    <div class="credits">
+                        Designed by 
+                        <a href="#">Denis Chanet</a>
+                    </div>
+                </div>
+                <a class="back-to-top" href="#" style="display: inline;"><p>Back to top</p>
+                    {#<i class="fas fa-angle-up"></i>#}
+                    {#<img id="back-to-top" src="" alt="back-to-top">#}
+                </a>
+            <!--Linkedin-->
+                    {#<i class="icon icon-back"></i>#}
+            {#<button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>#}
+            </div>
+            {#<a href=""></a>#}
+            
+        </footer>
+        
+
+        {% endblock %}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+
+
+    
+
+    
+        {% block javascripts %}
+        
+    <script src="{{ asset('build/app.js') }}"></script>
+    {{ encore_entry_script_tags('app') }}
+
+        
+        
+        {% endblock %}
+
+    </body>
+</html>

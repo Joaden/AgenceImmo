@@ -1,0 +1,553 @@
+{% extends 'base_back.html.twig' %}
+
+{#{% block body %}{{ parent() }}#}
+
+{% block body %}
+
+
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+        <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+        <div class="page-sidebar navbar-collapse collapse">
+            <!-- BEGIN SIDEBAR MENU -->
+            <ul class="page-sidebar-menu" data-auto-scroll="false" data-auto-speed="200">
+                <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
+                <li class="sidebar-toggler-wrapper">
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                    <div class="sidebar-toggler">
+                    </div>
+                    <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                </li>
+                <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
+                <li class="sidebar-search-wrapper hidden-xs">
+                    <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                    <!-- DOC: Apply "sidebar-search-bordered" class the below search form to have bordered search box -->
+                    <!-- DOC: Apply "sidebar-search-bordered sidebar-search-solid" class the below search form to have bordered & solid search box -->
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <form class="sidebar-search" action="#" method="">
+                        <a href="javascript:;" class="remove">
+                        </a>
+                        <div class="input-group">
+                            <input type="text" class="form-control js-tag-mail" id="js-tag-mail-menu" name="user" placeholder="membre">
+							<span class="input-group-btn">
+							<!-- DOC: value=" ", that is, value with space must be passed to the submit button -->
+							<input class="btn submit" type="button"  value=" "/>
+							</span>
+                        </div>
+                    </form>
+                    {% endif %}
+                    <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                </li>
+
+
+
+
+
+
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+
+
+                    <li class="{% block MenuAdministration %}{% endblock %} ">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i>
+                            <span class="title">{{ 'Administration'|trans }}</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <!-------administration payment ------------->
+                        <ul class="sub-menu">
+
+
+                            <!-------administration campaign ------------->
+                            <li {% block MenuAdministrationListUser %}{% endblock %} >
+                                <a href="{{ path('admin_list_user_admin') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Gestion comptes administrateurs'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuAdministrationList %}{% endblock %} >
+                                <a href="{{ path('admin_log_list') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Logs Admin'|trans }}
+                                </a>
+                            </li>
+                            {#<li {% block MenuAdministrationPsp %}{% endblock %} >#}
+                                {#<a href="{{ path('admin_psp_list') }}">#}
+                                    {#<i class="fa fa-cogs"></i> {{ 'Gestion des psp'|trans }}#}
+                                {#</a>#}
+                            {#</li>#}
+                            <li {% block MenuAdministrationTopPartners %}{% endblock %} >
+                                <a href="{{ path('admin_list_top_partner') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Gestion des partenaires'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuMailingList %}{% endblock %} >
+                                <a href="{{ path('admin_mailing_list') }}"><i class="fa fa-user"></i>  {{ 'Gestion des mails'|trans }} </a>
+                            </li>
+                            <li {% block MenuMailingCreate %}{% endblock %} >
+                                <a href="{{ path('admin_mailing_create') }}"><i class="fa fa-user"></i>  {{ 'Créer un mail'|trans }} </a>
+                            </li>
+                            <li {% block MenuAdministrationCohort %}{% endblock %} >
+                                <a href="{{ path('gestion_cohort') }}"><i class="fa fa-user"></i>  {{ 'Gestion cohort'|trans }} </a>
+                            </li>
+                            <li {% block MenuAdministrationShipper %}{% endblock %} >
+                                <a href="{{ path('admin_shipper_list') }}"><i class="fa fa-user"></i>  {{ 'Gestion Logisticien'|trans }} </a>
+                            </li>
+                            <li {% block MenuAdministrationDeleteUserTest %}{% endblock %} >
+                                <a href="{{ path('admin_delete_account') }}"><i class="fa fa-user"></i>  {{ 'Supression compte test'|trans }} </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--- Menu home ---->
+                    <li class="start {% block MenuHome %}{% endblock %} ">
+                        <a href="{{ path('admin_home') }}">
+                            <i class="fa fa-home"></i>
+                            <span class="title">{{ 'Accueil'|trans }}</span>
+                            <span class="selected"></span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                {% if is_granted('ROLE_MODERATOR') %}
+                    <!--- Menu Utilisateurs---->
+                    <li class="{% block MenuUsers %}{% endblock %} ">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i>
+                            <span class="title">{{ 'Utilisateurs'|trans }}</span>
+                            <span class="arrow "></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li {% block MenuUsersList %}{% endblock %} >
+                                <a href="{{ path('admin_user_list') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Liste'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuUsersSearch %}{% endblock %} >
+                                <a href="{{ path('admin_user_search_list') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Recherche'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuUserErrorAcquisition %}{% endblock %} >
+                                <a href="{{ path('admin_delete_user_error_acquisition') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Suppression error acquisition'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+
+
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <!--- Menu Payment---->
+                    <li class="{% block MenuPayments %}{% endblock %} ">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i>
+                            <span class="title">{{ 'Paiements'|trans }}</span>
+                            <span class="arrow "></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li {% block MenuPaymentsStats %}{% endblock %} >
+                                <a href="{{ path('admin_payment_stats') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Statistiques'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuPaymentsListStats %}{% endblock %} >
+                                <a href="{{ path('admin_paymentlist_stats') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Statistiques Avancées'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuPaymentsBill %}{% endblock %} >
+                                <a href="{{ path('admin_bill') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Factures'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+
+                {% if is_granted('ROLE_MODERATOR') and (CashBackBundle or WeeklyOffersBundle) %}
+                    <!--- Menu Payment---->
+                    <li class="{% block MenuRefund %}{% endblock %} ">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i>
+                            <span class="title">{{ 'Remboursement coupons'|trans }}</span>
+                            <span class="arrow "></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            {% if CashBackBundle %}
+                                <li {% block MenuRefundCashBack %}{% endblock %} >
+                                    <a href="{{ path('admin_refund_cashback') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Cashback'|trans }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if WeeklyOffersBundle %}
+                                <li {% block MenuRefundWeeklyOffers %}{% endblock %} >
+                                    <a href="{{ path('admin_refund_weeklyOffers') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Offres Hebdo'|trans }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
+
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <!--- Menu Campaign---->
+                    <li class="{% block MenuCampaign %}{% endblock %} ">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i>
+                            <span class="title">{{ 'Campagnes'|trans }}</span>
+                            <span class="arrow "></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li {% block MenuCampaignGestion %}{% endblock %} >
+                                <a href="{{ path('admin_list_campaigns') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Gestion'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuCampaignStats %}{% endblock %} >
+                                <a href="{{ path('admin_campaign_stats') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Statistiques'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuCampaignExplainList %}{% endblock %} >
+                                <a href="{{ path('admin_campaignExplain_list') }}"><i class="fa fa-user"></i> {{ 'Liste des explains'|trans }} </a>
+                            </li>
+                            <li {% block MenuCampaignExplainCreate %}{% endblock %} >
+                                <a href="{{ path('admin_campaignExplain_create') }}"><i class="fa fa-user"></i> {{ 'Créer un explain'|trans }} </a>
+                            </li>
+                            <li {% block MenuCampaignFooterList %}{% endblock %} >
+                                <a href="{{ path('admin_campaignFooter_list') }}"><i class="fa fa-user"></i> {{ 'Liste des footers'|trans }} </a>
+                            </li>
+                            <li {% block MenuCampaignFooterCreate %}{% endblock %} >
+                                <a href="{{ path('admin_campaignFooter_create') }}"><i class="fa fa-user"></i> {{ 'Créer un footer'|trans }} </a>
+                            </li>
+                            <li {% block MenuCampaignCategoryList %}{% endblock %} >
+                                <a href="{{ path('admin_campaignCategory_list') }}"><i class="fa fa-user"></i> {{ 'Liste des Categories'|trans }} </a>
+                            </li>
+                            <li {% block MenuCampaignCategoryCreate %}{% endblock %} >
+                                <a href="{{ path('admin_campaignCategory_create') }}"><i class="fa fa-user"></i> {{ 'Créer une Categorie'|trans }} </a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                   {% if is_granted('ROLE_SUPER_ADMIN')  %}
+
+
+
+                    <!-------administration page ------------->
+                <li {% block MenuPage %}{% endblock %} >
+                    <a href="javascript:;">
+                        <i class="fa fa-cogs"></i> {{ 'Pages'|trans }} <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li {% block MenuPageList %}{% endblock %} >
+                            <a href="{{ path('admin_page_list') }}"><i class="fa fa-user"></i>  {{ 'Liste des pages'|trans }} </a>
+                        </li>
+                        <li {% block MenuPageCreate %}{% endblock %} >
+                            <a href="{{ path('admin_page_create') }}"><i class="fa fa-user"></i>  {{ 'Créer une page'|trans }} </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                    {% if BoxBundle %}
+                        <!--- Menu WelcomePackages---->
+                        <li {% block MenuBox %}{% endblock %}>
+                            <a href="javascript:;">
+                                <i class="fa fa-folder-open"></i>
+                                <span class="title">{{ 'Box'|trans }}</span>
+                                <span class="arrow "></span>
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li {% block MenuBoxList %}{% endblock %} >
+                                    <a href="{{ path('admin_list_box') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Liste des box'|trans }}
+                                    </a>
+                                </li>
+                                <li {% block MenuBoxCreate %}{% endblock %} >
+                                    <a href="{{ path('admin_create_box') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Création box'|trans }}
+                                    </a>
+                                </li>
+                                <li {% block MenuBoxManagement %}{% endblock %} >
+                                    <a href="{{ path('admin_management_box') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Gestion box'|trans }}
+                                    </a>
+                                </li>
+                                <li {% block MenuBoxProductsList %}{% endblock %} >
+                                    <a href="{{ path('admin_list_box_products') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Gestion des produits box'|trans }}
+                                    </a>
+                                </li>
+                                <li {% block MenuBoxListToSend %}{% endblock %} >
+                                    <a href="{{ path('admin_list_box_to_send') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Envoi logisticien'|trans }}
+                                    </a>
+                                </li>
+                                <li {% block MenuBoxUpdate %}{% endblock %} >
+                                    <a href="{{ path('admin_management_box_update') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Mise à jour des envois'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+
+                    {% if PackagesBundle %}
+                        <!--- Menu WelcomePackages---->
+                        <li {% block MenuPackages %}{% endblock %}>
+                            <a href="javascript:;">
+                                <i class="fa fa-folder-open"></i>
+                                <span class="title">{{ 'Cadeaux'|trans }}</span>
+                                <span class="arrow "></span>
+                            </a>
+
+                            <ul class="sub-menu">
+                                <li {% block MenuPackagesList %}{% endblock %} >
+                                    <a href="{{ path('admin_list_packages') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Liste des cadeaux'|trans }}
+                                    </a>
+                                </li>
+                                <li {% block MenuPackagesCreate %}{% endblock %} >
+                                    <a href="{{ path('admin_create_packages') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Création cadeau'|trans }}
+                                    </a>
+                                </li>
+
+                                <li {% block MenuPackageManagement %}{% endblock %} >
+                                    <a href="{{ path('admin_management_package') }}">
+                                        <i class="fa fa-cogs"></i> {{ 'Gestion cadeaux'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+
+                       {% if WeeklyOffersBundle %}
+                           <!--- Menu WelcomePackages---->
+                           <li {% block WeeklyOffers %}{% endblock %}>
+                               <a href="javascript:;">
+                                   <i class="fa fa-folder-open"></i>
+                                   <span class="title">{{ 'Offres Hebdo'|trans }}</span>
+                                   <span class="arrow "></span>
+                               </a>
+
+                               <ul class="sub-menu">
+                                   <li {% block MenuWeeklyOffersList %}{% endblock %} >
+                                       <a href="{{ path('admin_list_weeklyOffers') }}">
+                                           <i class="fa fa-cogs"></i> {{ 'Liste des offres hebdo'|trans }}
+                                       </a>
+                                   </li>
+                                   <li {% block MenuWeeklyOffersCreate %}{% endblock %} >
+                                       <a href="{{ path('admin_create_weeklyOffers') }}">
+                                           <i class="fa fa-cogs"></i> {{ 'Création offres hebdo'|trans }}
+                                       </a>
+                                   </li>
+                               </ul>
+                           </li>
+                       {% endif %}
+
+                       {% if CashBackBundle %}
+                           <!--- Menu WelcomePackages---->
+                           <li {% block CashBack %}{% endblock %}>
+                               <a href="javascript:;">
+                                   <i class="fa fa-folder-open"></i>
+                                   <span class="title">{{ 'CashBack'|trans }}</span>
+                                   <span class="arrow "></span>
+                               </a>
+
+                               <ul class="sub-menu">
+                                   <li {% block MenuCashBackList %}{% endblock %} >
+                                       <a href="{{ path('admin_list_cashBack') }}">
+                                           <i class="fa fa-cogs"></i> {{ 'Liste des CashBack'|trans }}
+                                       </a>
+                                   </li>
+                                   <li {% block MenuCashBackCreate %}{% endblock %} >
+                                       <a href="{{ path('admin_create_cashBack') }}">
+                                           <i class="fa fa-cogs"></i> {{ 'Création CashBack'|trans }}
+                                       </a>
+                                   </li>
+                               </ul>
+                           </li>
+                       {% endif %}
+
+                       {% if PromoBundle %}
+                           <!--- Menu WelcomePackages---->
+                           <li {% block Promo %}{% endblock %}>
+                               <a href="javascript:;">
+                                   <i class="fa fa-folder-open"></i>
+                                   <span class="title">{{ 'Promos'|trans }}</span>
+                                   <span class="arrow "></span>
+                               </a>
+
+                               <ul class="sub-menu">
+                                   <li {% block MenuPromoList %}{% endblock %} >
+                                       <a href="{{ path('admin_list_promo') }}">
+                                           <i class="fa fa-cogs"></i> {{ 'Liste des Promos'|trans }}
+                                       </a>
+                                   </li>
+                                   <li {% block MenuPromoCreate %}{% endblock %} >
+                                       <a href="{{ path('admin_create_promo') }}">
+                                           <i class="fa fa-cogs"></i> {{ 'Création Promo'|trans }}
+                                       </a>
+                                   </li>
+                               </ul>
+                           </li>
+                       {% endif %}
+
+                    {% if PackagesBundle or BoxBundle %}
+                        <!--- Menu WelcomePackages---->
+                        <li {% block MenuMobiltron %}{% endblock %}>
+                            <a href="{{ path('admin_update_mobiltron') }}">
+                                <i class="fa fa-folder-open"></i>
+                                <span class="title">{{ 'Update LOG Mobiltron'|trans }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+
+                {% if BlogBundle%}
+                <!-------administration page ------------->
+                    <!-------administration blog ------------->
+                    <li {% block MenuBlogs %}{% endblock %} >
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i> {{ 'Blog'|trans }} <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li {% block MenuBlogList %}{% endblock %} >
+                                <a href="{{ path('admin_blog_list') }}"><i class="fa fa-user"></i>  {{ 'List des articles'|trans }} </a>
+                            </li>
+                            <li {% block MenuBlogCreate %}{% endblock %} >
+                                <a href="{{ path('admin_blog_create') }}"><i class="fa fa-user"></i>  {{ 'Créer un article'|trans }} </a>
+                            </li>
+                            <li {% block MenuBlogThemesList %}{% endblock %} >
+                                <a href="{{ path('admin_blog_themes_list') }}"><i class="fa fa-user"></i>  {{ 'List des themes blog'|trans }} </a>
+                            </li>
+                            <li {% block MenuBlogThemesCreate %}{% endblock %} >
+                                <a href="{{ path('admin_blog_themes_create') }}"><i class="fa fa-user"></i>  {{ 'Créer un theme blog'|trans }} </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+
+                {% endif %}
+
+
+                {% if is_granted('ROLE_SUPER_ADMIN') or app.user.roles[0] == 'ROLE_AFFILIE' %}
+
+
+                    <!--- Menu Partners---->
+                    <li class="{% block MenuPartners %}{% endblock %} ">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i>
+                            <span class="title">{{ 'Partenaires'|trans }}</span>
+                            <span class="arrow "></span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li {% block MenuPartnersList %}{% endblock %} >
+                                <a href="{{ path('admin_partner_stats') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Statistiques'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuAffilierUser %}{% endblock %} >
+                                <a href="{{ path('admin_partner_users_stats') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Membres Stats'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuAffilierCampaign %}{% endblock %} >
+                                <a href="{{ path('admin_list_campaigns') }}">
+                                    <i class="fa fa-cogs"></i> {{ 'Liste campagnes'|trans }}
+                                </a>
+                            </li>
+                            <li {% block MenuAdministrationImgMailing %}{% endblock %} >
+                                <a href="{{ path('admin_img_mailing_list') }}"><i class="fa fa-user"></i>  {{ 'Gestion images mailing'|trans }} </a>
+                            </li>
+                            <li {% block MenuAdministrationCohortCSV %}{% endblock %} >
+                                <a href="{{ path('admin_get_cohorte_list') }}"><i class="fa fa-user"></i>  {{ 'Historique cohortes'|trans }} </a>
+                            </li>
+                            <li {% block MenuAdministrationLogistiqueCsv %}{% endblock %} >
+                                <a href="{{ path('admin_get_logistique_list', {'name': 'Asendia'}) }}"><i class="fa fa-user"></i>  {{ 'Historique Asendia'|trans }} </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <!--- Menu Partners---->
+                    <li class="{% block MenuExport %}{% endblock %} ">
+                        <a href="javascript:;">
+                            <i class="fa fa-folder-open"></i>
+                            <span class="title">{{ 'Exports Data'|trans }}</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li {% block MenuAdministrationExportUser %}{% endblock %} >
+                                <a href="{{ path('admin_user_export_csv') }}"><i class="fa fa-user"></i>  {{ 'Export mail users'|trans }} </a>
+                            </li>
+                            <li {% block MenuExportMembresStats %}{% endblock %} >
+                                <a href="{{ path('admin_membre_stats_export_csv') }}"><i class="fa fa-user"></i>  {{ 'Export membres stats'|trans }} </a>
+                            </li>
+                            <li {% block MenuExportLandingsStats %}{% endblock %} >
+                                <a href="{{ path('admin_landings_stats_export_csv') }}"><i class="fa fa-user"></i>  {{ 'Export landings stats'|trans }} </a>
+                            </li>
+                            <li {% block MenuExportuserPaymentsStats %}{% endblock %} >
+                                <a href="{{ path('admin_userPayment_stats_export_csv') }}"><i class="fa fa-user"></i>  {{ 'Export payments users stats'|trans }} </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+
+
+
+            </ul>
+            <!-- END SIDEBAR MENU -->
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+    <div class="page-content">
+
+
+
+    <!-- BEGIN PAGE HEADER-->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- BEGIN PAGE TITLE & BREADCRUMB-->
+            <h3 class="page-title">
+                {% block TitlePage %}{% endblock %}
+            </h3>
+            <ul class="page-breadcrumb breadcrumb">
+                <li>
+                    <i class="fa fa-home"></i>
+                    <a href="{{ path('admin') }}">{{ 'Accueil'|trans }}</a>
+                    <i class="fa fa-angle-right"></i>
+                </li>
+                {% block contentTitle %}{% endblock %}
+            </ul>
+            <!-- END PAGE TITLE & BREADCRUMB-->
+        </div>
+    </div>
+    <!-- END PAGE HEADER-->
+
+    {% block content %}{% endblock %}
+
+{% endblock %}
