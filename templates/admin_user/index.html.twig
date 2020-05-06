@@ -8,43 +8,40 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Bienvenue !</h1>
-
-    <h1>Dans l'espace de Gestion des Utilisateurs</h1>
-    
+<div class="jumbotron text center">
+    <h1 class="titleSnakeBack">Gestion des Utilisateurs !</h1>
 </div>
 
 <section>
 
-</section>
 
-<div class="container mt-5">
+    <div class="container mt-5">
 
-    <div class="text-right">
-        <a href="{{ path('admin_user.new') }}" class="btn btn-primary">Créer un nouvel utilisateur</a>
-    </div>
-
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
+        <div class="text-right">
+            <a href="{{ path('admin_user.new') }}" class="btn btn-primary">Créer un nouvel utilisateur</a>
         </div>
-    {% endfor %}
 
-    <table class="table table-striped">
-        <thead>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
             <tr>
                 <th>Nombre d'utilisateur :
-                    <td>
+                <td>
                     {% set counter = 0 %}
                     {% set counterNbr = 0 %}
-                    {% for user in users %}
-                            {% set counterNbr = counterNbr + 1 %}   
+                    {% for totalUsers in totalUsers %}
+                        {% set counterNbr = counterNbr + 1 %}
                     {% endfor %}
 
-                    {{ counterNbr }} 
-                    </td> 
-                </th>              
+                    {{ counterNbr }}
+                    {{ totalUsers }}
+                </td>
+                </th>
             </tr>
             <tr>
                 <th>N° d'utilisateur</th>
@@ -56,43 +53,42 @@
                 <th>Voir</th>
 
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
 
-    {% for users in users %}
-        <tr>
-            <td>{{ users.id }}</td>
-            <td>{{ users.username }}</td>
-            <td>{{ users.email }}</td>
-            <td>date d'inscription</td>
-            <td>Adresse</td>
-            <td>
-                <a href="{{ path('admin_user.edit', {id: users.id}) }}" class="btn btn-secondary">Modifier</a>
+            {% for users in users %}
+                <tr>
+                    <td>{{ users.id }}</td>
+                    <td>{{ users.username }}</td>
+                    <td>{{ users.email }}</td>
+                    <td>date d'inscription</td>
+                    <td>Adresse</td>
+                    <td>
+                        <a href="{{ path('admin_user.edit', {id: users.id}) }}" class="btn btn-secondary">Modifier</a>
 
-                <form method="post" action="{{ path('admin_user.delete', {id: users.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes vous vraiment sûr?')">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value={{csrf_token('delete' ~ users.id) }}>
-                    <button class="btn btn-danger">Supprimer</button>
-                </form>
-            </td>
-            <td valign="center" align="center"><a href="#" target="_blank"><i class="fa  fa-eye fa-2x"></i></a>Voir détails</td>
-        </tr>
-    {% endfor %}
-        </tbody>
-    </table>
+                        <form method="post" action="{{ path('admin_user.delete', {id: users.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes vous vraiment sûr?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value={{csrf_token('delete' ~ users.id) }}>
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                    <td valign="center" align="center"><a href="#" target="_blank"><i class="fa  fa-eye fa-2x"></i></a>Voir détails</td>
+                </tr>
+            {% else %}
+                No users have been found.
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        {{ knp_pagination_render(users) }}
+    </div>
 
-        <section id="favoris">
-        {% for user in users %}
-            */* {{ user.username }}
-            email:  {{ user.email }}
-            id : {{ user.id }}
-        {% else %}
-            No users have been found.
-        {% endfor %}
-            
-        </section>
+</section>
+
+<div class="jumbotron text-center">
+    <h2 class="titleSnake">Tableau de données Users</h2>
 </div>
-
 
 <!-- BEGIN table CONTENT-->
 <div class="row">

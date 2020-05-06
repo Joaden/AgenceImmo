@@ -5,11 +5,14 @@ namespace App\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 use App\Repository\UserRepository;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use App\Form\ContactType;
+
+use Knp\Component\Pager\PaginatorInterface;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -37,12 +40,28 @@ class AdminUserController extends AbstractController
      * @Route("/admin/user", name="admin_user.index")
      * @return \Symfony\Component\HttpFoundatin\Response
      */
-    public function index()
+    public function index(PaginatorInterface $paginator, Request $request)
     {
         // Je récupère tous les Users
-        $users = $this->repository->findAll();
+        $totalUsers = $this->repository->findAll();
+
+        // Pagination des users
+        $users = $paginator->paginate(
+                $this->repository->findAll(),
+                $request->query->getInt('page',1),
+                9
+            );
+
+//        dump($users);
+//        die;
+
+
         // je les affiche sur la page admin_user_index 
-        return $this->render('admin_user/index.html.twig', compact('users'));
+//        return $this->render('admin_user/index.html.twig', compact('users'));
+        return $this->render('admin_user/index.html.twig', [
+            'totalUsers' => $totalUsers,
+            'users' => $users,
+        ]);
     }
 
     /**

@@ -60,8 +60,7 @@ class PropertyController extends AbstractController
         $search = new PropertySearch();
         // je lui passe le type a utiliser
 
-    dump($search);
-//    die;
+
         $form = $this->createForm(PropertySearchType::class, $search);
         //gere la requete
 
@@ -72,9 +71,9 @@ class PropertyController extends AbstractController
         $properties = $paginator->paginate(
             $this->repository->findAllVisibleQuery($search),
             $request->query->getInt('page',1),
-            12
+            9
         );
-        
+
         // 1. Obtain doctrine manager
         //$em = $this->getDoctrine()->getManager();
         

@@ -21,7 +21,7 @@
     <body>
     <!-- body navbar fixed-top   style="background-color: #9933ff;"   -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav id="nav-back" class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="{{ path('admin') }}">Back-Office</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -80,7 +80,12 @@
         </div>
     </nav>
         <!-- endbody navbar -->
-        {% block body %}
+
+    {#{% include 'admin/menu.html.twig' %}#}
+
+    {#{% include 'admin/navBarLeft.html.twig' %}#}
+
+    {% block body %}
 
         {% endblock %}
     
@@ -98,16 +103,13 @@
                         <a href="#">Denis Chanet</a>
                     </div>
                 </div>
-                <a class="back-to-top" href="#" style="display: inline;"><p>Back to top</p>
-                    {#<i class="fas fa-angle-up"></i>#}
-                    {#<img id="back-to-top" src="" alt="back-to-top">#}
-                </a>
             <!--Linkedin-->
                     {#<i class="icon icon-back"></i>#}
             {#<button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>#}
+
+
+            <a class="back-to-top" href="#"><p>Back to top</p></a>
             </div>
-            {#<a href=""></a>#}
-            
         </footer>
         
 

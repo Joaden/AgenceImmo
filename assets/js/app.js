@@ -11,6 +11,7 @@
 const $ = require('jquery')
 
 require('../css/app.css');
+require('../css/app_back.css');
 
 require('select2')
 
