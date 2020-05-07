@@ -64,6 +64,43 @@ class AdminUserController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/admin/user/detail", name="admin_user.detail")
+     */
+    public function userDetail(Request $request, $mail)
+    {
+        // Je récupère le user par l'id
+        $users = $this->repository->findAll();
+
+        $user = $this->get('UsersManager')->getUsersByMail($mail);
+
+        if (!$user) {
+            //redirect error page
+            return $this->render('@BackOfficeSite/Error/error.html.twig', array(
+                'title' => $this->get('translator')->trans('Erreur user'), 'message' => $this->get('ErrorMessage.service')->errorUser()));
+        }
+
+
+        // detail du User par id
+        $detailUsers = $this->repository->findAll();
+
+
+//        dump($users);
+//        die;
+
+
+        // je les affiche sur la page admin_user_index
+//        return $this->render('admin_user/index.html.twig', compact('users'));
+        return $this->render('admin_user/detail.html.twig', [
+            'totalUsers' => $detailUsers,
+            'users' => $users,
+            'entity' => $user,
+
+        ]);
+    }
+
+
     /**
      * @Route("/admin/user/create", name="admin_user.new")
      */

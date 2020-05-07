@@ -28,38 +28,38 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto" style="text-shadow: 1px 2px 2px #1C6EA4;">
+            <ul id="nav-Header" class="navbar-nav mr-auto" style="text-shadow: 1px 2px 2px #1C6EA4;">
                 <li class="nav-item">
                                 <!-- route page Acheter un bien avec la seach -->
-                    <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}">Acheter</a>
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="{{ path('property.index') }}"><i class="fa fa-home"></i> Acheter</a>
                 </li>
                 
                 <li class="nav-item">
                                 <!--  -->
-                    <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href="">Vendre</a>
+                    <a class="nav-link {% if current_menu is defined and current_menu == 'properties' %}active{% endif %}" href=""><i class="fa fa-euro"></i> Vendre</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('louer') }}">Louer</a>
+                    <a class="nav-link" href="{{ path('louer') }}"><i class="fa fa-key"></i> Louer</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Informations 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('about') }}">A Propos de nous</a>
-                        <a class="dropdown-item" href="{{ path('infos') }}">Informations</a>
-                        <a class="dropdown-item" href="{{ path('privacy') }}">Politique de confidentialité</a>
+                        <a class="dropdown-item" href="{{ path('about') }}"><i class="fa fa-users"></i> A Propos de nous</a>
+                        <a class="dropdown-item" href="{{ path('infos') }}"><i class="fa fa-info-circle"></i> Informations</a>
+                        <a class="dropdown-item" href="{{ path('privacy') }}"><i class="fa fa-lock"></i> Politique de confidentialité</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ path('contact') }}">Nous Contacter</a>
+                        <a class="dropdown-item" href="{{ path('contact') }}"><i class="fa fa-envelope"></i> Nous Contacter</a>
                     </div>
                 </li>
             {% if not app.user %}
           
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('security_registration') }}">S'inscrire</a>
+                <li class="nav-item log">
+                    <a class="nav-link" href="{{ path('security_registration') }}"><i class="fa fa-user-plus"></i> S'inscrire</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('security_login')}}">Se connecter</a>
+                <li class="nav-item log">
+                    <a class="nav-link" href="{{path('security_login')}}"><i class="fa fa-sign-in"></i> Se connecter</a>
                 </li>
             {% else %}
                 <div class="divider-vertical"></div>
@@ -73,10 +73,10 @@
                         Back-Office
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('admin') }}">Administration</a>
+                        <a class="dropdown-item" href="{{ path('admin') }}"><i class="fa fa-user-secret"></i>  Administration</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ path('admin.property.index') }}">Gestion des biens</a>
-                        <a class="dropdown-item" href="{{ path('admin_user.index') }}">Gestion des utilisateurs</a>
+                        <a class="dropdown-item" href="{{ path('admin.property.index') }}"><i class="fa fa-home"></i> Gestion des biens</a>
+                        <a class="dropdown-item" href="{{ path('admin_user.index') }}"><i class="fa fa-user"></i>  Gestion des utilisateurs</a>
                     </div>
                 </li>
                 {#<li class="nav-item" style="text-shadow: 1px 2px 2px #FFBF00;">#}
@@ -87,15 +87,18 @@
                 {#</li>#}
             {% endif %}
                 <li class="nav-item">
-                    <a href="{{path('email')}}" class="nav-link">Messages</a>
+                    <a href="{{path('email')}}" class="nav-link"><i class="fa fa-comments"></i> Messages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('account')}}">Mon compte</a>
+                    <a class="nav-link" href="{{path('account')}}"><i class="fa fa-user-circle"></i> Mon compte</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
+                <li class="nav-item log">
+                    <a class="nav-link" href="{{path('security_logout')}}"><i class="fa fa-sign-out"></i> Se déconnecter</a>
                 </li>
             {% endif %}
+            </ul>
+            <ul>
+
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -188,25 +191,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="container-copyright">
-                    <div class="copyright">&copy; Copyright <strong>Agence de Limeil</strong>
-                        
-                    </div>
-                    <div class="credits">
-                        Designed by 
-                        <a href="#">Denis Chanet</a>
-                    </div>
-                </div>
-                <a class="back-to-top" href="#" style="display: inline;"><p>Back to top</p>
-                    {#<i class="fas fa-angle-up"></i>#}
-                    {#<img id="back-to-top" src="" alt="back-to-top">#}
-                </a>
+
             <!--Linkedin-->
                     {#<i class="icon icon-back"></i>#}
             {#<button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>#}
             </div>
             {#<a href=""></a>#}
-            
+            <div class="container-copyright">
+                <div class="copyright">&copy; Copyright <strong>Agence de Limeil</strong>
+
+                </div>
+                <div class="credits">
+                    Designed by
+                    <a href="#">Denis Chanet</a>
+                </div>
+                <a class="back-to-top" href="#" style="display: inline;"><p>Back to top</p>
+                </a>
+            </div>
         </footer>
         
 

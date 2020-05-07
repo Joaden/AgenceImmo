@@ -26,7 +26,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{{ path('home') }}">FRONT</a>
+        <a class="navbar-brand" href="{{ path('home') }}">Front</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto" style="text-shadow: 1px 2px 2px #1C6EA4;">
@@ -34,10 +34,10 @@
             {% if not app.user %}
           
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('security_registration') }}">S'inscrire</a>
+                    <a class="nav-link" href="{{ path('security_registration') }}"><i class="fa fa-user-plus"></i> S'inscrire</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('security_login')}}">Se connecter</a>
+                    <a class="nav-link" href="{{path('security_login')}}"><i class="fa fa-sign-in"></i> Se connecter</a>
                 </li>
             {% else %}
                 <div class="divider-vertical"></div>
@@ -51,21 +51,21 @@
                         Back-Office
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('admin') }}">Administration</a>
+                        <a class="dropdown-item" href="{{ path('admin') }}"><i class="fa fa-user-secret"></i>  Administration</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ path('admin.property.index') }}">Gestion des biens</a>
-                        <a class="dropdown-item" href="{{ path('admin_user.index') }}">Gestion des utilisateurs</a>
+                        <a class="dropdown-item" href="{{ path('admin.property.index') }}"><i class="fa fa-home"></i> Gestion des biens</a>
+                        <a class="dropdown-item" href="{{ path('admin_user.index') }}"><i class="fa fa-user"></i>  Gestion des utilisateurs</a>
                     </div>
                 </li>
             {% endif %}
                 <li class="nav-item">
-                    <a href="{{path('email')}}" class="nav-link">Mes messages</a>
+                    <a href="{{path('email')}}" class="nav-link"><i class="fa fa-comments"></i> Mes messages</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('account')}}">Mon compte</a>
+                    <a class="nav-link" href="{{path('account')}}"><i class="fa fa-user-circle"></i> Mon compte</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
+                    <a class="nav-link" href="{{path('security_logout')}}"><i class="fa fa-caret-square-up"></i><i class="fa fa-sign-out"></i> Se déconnecter</a>
                 </li>
             {% endif %}
             </ul>
@@ -87,33 +87,31 @@
 
     {% block body %}
 
-        {% endblock %}
+    {% endblock %}
     
-        {% block footer %}
-        
-        
-        <footer id="footer">
-            <div class="footer-top">
-                <div class="container-copyright">
-                    <div class="copyright">&copy; Copyright <strong>Agence de Limeil</strong>
-                        
-                    </div>
-                    <div class="credits">
-                        Designed by 
-                        <a href="#">Denis Chanet</a>
-                    </div>
+    {% block footer %}
+
+
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container-copyright">
+                <div class="copyright">&copy; Copyright <strong>Agence de Limeil</strong>
+
                 </div>
-            <!--Linkedin-->
-                    {#<i class="icon icon-back"></i>#}
-            {#<button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>#}
-
-
-            <a class="back-to-top" href="#"><p>Back to top</p></a>
+                <div class="credits">
+                    Designed by
+                    <a href="#">Denis Chanet</a>
+                </div>
             </div>
-        </footer>
-        
+        <!--Linkedin-->
+                {#<i class="icon icon-back"></i>#}
+        {#<button type="button" class="btn btn-li"><i class="fab fa-linkedin-in"></i></button>#}
 
-        {% endblock %}
+        <a class="back-to-top" href="#"><p><i class="fa fa-caret-square-up"></i>Back to top</p></a>
+        </div>
+    </footer>
+
+    {% endblock %}
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

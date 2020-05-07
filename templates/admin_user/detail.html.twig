@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Detail Users' %}
+
+{% block body %}
+
+<div class="jumbotron text center">
+    <h1 class="titleSnakeBack">Détail utilisateurs !</h1>
+</div>
+
+<section>
+
+
+    <div class="container mt-5">
+
+        <div class="text-right">
+            <a href="{{ path('admin_user.new') }}" class="btn btn-primary">Créer un nouvel utilisateur</a>
+        </div>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Utilisateurs :
+                <td>
+                    {{ users.username }}
+                </td>
+                </th>
+            </tr>
+            <tr>
+                <th>ID User</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Date d'inscription</th>
+                <th>Adresse</th>
+                <th>Actions</th>
+                <th>Voir</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for users in users %}
+                <tr>
+                    <td>{{ users.id }}</td>
+                    <td>{{ users.username }}</td>
+                    <td>{{ users.email }}</td>
+                    <td>date d'inscription</td>
+                    <td>Adresse</td>
+                    <td>
+                        <a href="{{ path('admin_user.edit', {id: users.id}) }}" class="btn btn-secondary">Modifier</a>
+
+                        <form method="post" action="{{ path('admin_user.delete', {id: users.id}) }}" style="display: inline-block" onsubmit="return confirm('Etes vous vraiment sûr?')">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value={{csrf_token('delete' ~ users.id) }}>
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                    <td valign="center" align="center"><a href="{{ path('admin_user.detail', {id: users.id}) }}" target="_blank"><i class="fa  fa-eye fa-2x"></i></a>Voir détails</td>
+                </tr>
+            {% else %}
+                No users have been found.
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        {{ knp_pagination_render(users) }}
+    </div>
+
+</section>
+
+<div class="jumbotron text-center">
+    <h2 class="titleSnake">Tableau de données Users</h2>
+</div>
+
+<!-- BEGIN table CONTENT-->
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box green-haze">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-bars fa-2x"></i> 'Détails des opérations'|trans
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-striped table-bordered table-hover" id="sample_1">
+                    <thead>
+                    <tr>
+                        <th width="20%">
+                            'Nom'|trans
+                        </th>
+                        <th width="10%">
+                            'Mail'|trans
+                        </th>
+                        <th width="10%">
+                            'Campagne'|trans
+                        </th>
+                        <th width="10%">
+                            'Date inscription'|trans
+                        </th>
+                        <th width="10%">
+                            'Nombre paiements'|trans
+                        </th>
+                        <th width="10%">
+                            'Nombre ordres paiements'|trans
+                        </th>
+                        <th width="15%">
+                            'Status abo'|trans
+                        </th>
+                        <th width="15%">
+                            'Détails client'|trans
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>adress</td>
+                        <td>mail</td>
+                        <td>info</td>
+                        <td>info</td>
+                        <td> count </td>
+                        <td>length</td>
+                        <td> entity.getRolesString</td>
+                        <td valign="center" align="center"><i class="fa  fa-eye fa-2x"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END table -->
+
+
+        {% endblock %}

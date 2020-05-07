@@ -1,4 +1,5 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_back.html.twig' %}
+{#{% extends 'base.html.twig' %}#}
 
 {% block title %}Gestion des Users{% endblock %}
 
@@ -30,21 +31,20 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>Nombre d'utilisateur :
+                <th>Total utilisateurs :
                 <td>
                     {% set counter = 0 %}
                     {% set counterNbr = 0 %}
-                    {% for totalUsers in totalUsers %}
+                    {% for totalUser in totalUsers %}
                         {% set counterNbr = counterNbr + 1 %}
                     {% endfor %}
 
                     {{ counterNbr }}
-                    {{ totalUsers }}
                 </td>
                 </th>
             </tr>
             <tr>
-                <th>N° d'utilisateur</th>
+                <th>ID User</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Date d'inscription</th>
@@ -72,7 +72,7 @@
                             <button class="btn btn-danger">Supprimer</button>
                         </form>
                     </td>
-                    <td valign="center" align="center"><a href="#" target="_blank"><i class="fa  fa-eye fa-2x"></i></a>Voir détails</td>
+                    <td valign="center" align="center"><a href="{{ path('admin_user.detail', {id: users.id}) }}" target="_blank"><i class="fa  fa-eye fa-2x"></i></a>Voir détails</td>
                 </tr>
             {% else %}
                 No users have been found.
