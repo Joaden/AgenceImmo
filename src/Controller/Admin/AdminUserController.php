@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use App\Repository\UserRepository;
 use App\Entity\User;
+use App\Entity\Comments;
 use App\Form\RegistrationType;
 use App\Form\ContactType;
 
@@ -66,14 +67,24 @@ class AdminUserController extends AbstractController
 
 
     /**
-     * @Route("/admin/user/detail", name="admin_user.detail")
+     * @Route("/admin/user/detail/{id}", name="admin_user.detail")
+     * @param User $user
+     * 
      */
-    public function userDetail(Request $request, $mail)
+    public function userDetail(User $user, Request $request)
     {
         // Je récupère le user par l'id
         $users = $this->repository->findAll();
 
-        $user = $this->get('UsersManager')->getUsersByMail($mail);
+        // $repository = $em->getRepository(Comment::class)
+
+        // $comments = $this->repository->findAll();
+
+        //$user = $this->get('UsersManager')->getUsersByMail($mail);
+
+        if($user->getId() !==$user){
+
+        }
 
         if (!$user) {
             //redirect error page
@@ -84,18 +95,23 @@ class AdminUserController extends AbstractController
 
         // detail du User par id
         $detailUsers = $this->repository->findAll();
+        // $comments = $this->repository->getComments();
 
 
-//        dump($users);
-//        die;
+
+       //dump($detailUsers);
+    //    dump($comments);
+    //    dump($user);
+    //    die;
 
 
         // je les affiche sur la page admin_user_index
 //        return $this->render('admin_user/index.html.twig', compact('users'));
-        return $this->render('admin_user/detail.html.twig', [
+        return $this->render('admin_user/userdetail.html.twig', [
             'totalUsers' => $detailUsers,
             'users' => $users,
             'entity' => $user,
+            // 'comments' => $comments,
 
         ]);
     }

@@ -123,7 +123,18 @@ class HomeController extends AbstractController
     public function homeStagin(): Response
     {
         return $this->render('pages/home_stagin.html.twig');
-      //return new Response('register');
+      //return new Response('home stagin');
+    }
+
+    
+    /**
+     * @Route("/avis-user", name="avis_user")
+     * @return Response
+     */
+    public function avisUser(): Response
+    {
+        return $this->render('pages/avis_user.html.twig');
+      //return new Response('avis user');
     }
 
 

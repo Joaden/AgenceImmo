@@ -1,8 +1,8 @@
 {{ form_start(form) }}
 <div class="row">
-    <div class="col-md-2">{{ form_row(form.username) }}</div>
-    <div class="col-md-2">{{ form_row(form.email) }}</div>
-    <div class="col-md-2">{{ form_row(form.password) }}</div>
+    <div class="col-md-3">{{ form_row(form.username) }}</div>
+    <div class="col-md-3">{{ form_row(form.email) }}</div>
+    <div class="col-md-3">{{ form_row(form.password, {'attr': {'placeholder': 'minimum 8 caractères'}}) }}</div>
 </div>
 {{ form_rest(form) }}
 <button class="btn btn-primary">{{ button|default('Enregistrer') }}</button>

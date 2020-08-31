@@ -28,7 +28,7 @@ class PropertySearchType extends AbstractType
                 'required' => false,
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Surface minimale'
+                    'placeholder' => 'Surface minimale m²'
                 ]
             ])
             ->add('options', EntityType::class, [

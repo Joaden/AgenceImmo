@@ -110,7 +110,7 @@
     </div>
 </section>
 
-<section id="pictures">
+<!-- <section id="pictures">
     <div class="container">
         <div class="pictures-header">
             <h1>Somes Effect Pictures</h1>
@@ -169,23 +169,86 @@
             </div>
         </div>
     </div>
+</section> -->
+
+
+<section>
+    <div class="jumbotron text center column">
+        <h3>Notre Equipe : </h3>
+        <div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                        <img class="media-object dp img-circle" src="images/img-profil/charlie-ico.jpg" style="width: 100px;height:100px;">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">Charlie Sondagar <small> India</small></h4>
+                            <h5>Software Developer at <a href="#">DAOS.fr</a></h5>
+                            <hr style="margin:8px auto">
+                            <span class="label label-default">HTML5/CSS3</span>
+                            <span class="label label-default">jQuery</span>
+                            <span class="label label-info">PHP</span>
+                            <span class="label label-default">Android</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="media">
+                <a class="pull-left" href="#">
+                <img class="media-object dp img-circle" src="https://www.denis-chanet.fr/img/photoprofil.jpg" style="width: 100px;height:100px;">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">Chanet Denis <small> Laos</small></h4>
+                    <h5>Lead Developer & founder at <a href="#">DAOS.fr</a></h5>
+                    <hr style="margin:8px auto">
+                    <span class="label label-default">HTML5/CSS3</span>
+                    <span class="label label-default">jQuery</span>
+                    <span class="label label-info">SymfonyPHP</span>
+                    <span class="label label-default">mobile</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
+<section id="skills">
+    <div class="container">
+        <div class="skills-header">
+            <h3>HOME STAGING</h3>
+            <div id="div-staging">
+                <img src="../img/home-staging.jpg" alt="image-home-staging"/>
+            </div>
+        </div>
+        <div class="skills-content">
+            <div><a class="nav-conseil" href="{{ path('home_stagin') }}"><i class="fa fa-handshake-o"></i> Découvrez nos conseils</a></div>
+            <div><P>Cette peinture jaune citron du salon... c'est votre goût mais pas celui de votre futur acquéreur !
+
+C'est prouvé, 35 % des biens se vendent vite dès lors qu'ils bénéficient d'un bon relookage.</P></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</section>
 
 <section id="home-staging">
         <div class="jumbotron text center column">
             <div id="div-staging">
-                <img src="../img/home-stagin.jpeg" alt="image-home-staging"/>
+                <!-- <img src="../img/home-stagin.jpeg" alt="image-home-staging"/> -->
             </div>
             <div>
-                <h3>HOME STAGING</h3>
-                <P>Cette peinture jaune citron du salon... c'est votre goût mais pas celui de votre futur acquéreur !
+                <h3>Avis Clients</h3>
+                <P>Superbe travail !
 
-                    C'est prouvé, 35 % des biens se vendent vite dès lors qu'ils bénéficient d'un bon relookage.</P>
+                    Nous avons effectué un relooking en 2 semaines. Le résultat est surprenant!</P>
             </div>
-            <a class="nav-conseil" href="{{ path('home_stagin') }}"><i class="fa fa-handshake-o"></i> Découvrez nos conseils</a>
+            <a class="nav-conseil" href="{{ path('avis_user') }}"><i class="fa fa-handshake-o"></i> Découvrez les avis des utilisateurs</a>
 
         </div>
 </section>
 
+
 {% endblock %}
+
